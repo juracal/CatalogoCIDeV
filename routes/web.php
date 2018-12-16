@@ -11,6 +11,19 @@
 |
 */
 
+
+Route::get('/login','UserController@login');
+
+Route::get('/register','UserController@create');
+
+Route::post('/register','UserController@store');
+
+Route::get('/user','UserController@projects');
+
+Route::get('/user/proyectos','UserController@getData');
+
+
+
 Route::get('/', function () {
     return view('welcome');
 });
