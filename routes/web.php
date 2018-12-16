@@ -21,6 +21,11 @@ Route::post('/register','UserController@store');
 Route::get('/user','UserController@projects');
 
 Route::get('/user/proyectos','UserController@getData');
+//---------------------------------------------------------------------
+
+Route::get('/game/register','GameController@create');
+
+Route::post('/game/register','GameController@store');
 
 
 
