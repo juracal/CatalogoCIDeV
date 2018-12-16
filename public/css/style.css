@@ -19,8 +19,8 @@ form {
 
 .block{
   width: 100%;
-  background-color: gray;
-  opacity: 0.11;
+  background-color: #666666;
+
   height: 10px;
 }
 
@@ -37,7 +37,6 @@ select{
 }
 h1{
   color:#666666;
-
 }
 
 button{
@@ -73,4 +72,62 @@ button:hover {
 .right {
   right: 0;
 
+}
+
+.centered {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 80%;
+
+
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+li {
+  float: left;
+  widht:300px;
+
+}
+
+li a {
+  display: block;
+  padding: 8px;
+  background-color: #dddddd;
+  position: relative;
+
+}
+a:active {
+  color: red;
+  opacity: 0.11;
+}
+.nav{
+    background-color: #dddddd;
+    width:100%;
+    height: 40px;
+}
+.edit_input{
+  width: 100%;
+  margin-top: 30px;
+  text-align:center;
+}
+textarea{
+  height: 150px;
+}
+
+
+.inputfile {
+    margin-top: 10px;
+    display: inline-block;
+
+    cursor: pointer;
+    transform: translate(35%, 35%);
 }

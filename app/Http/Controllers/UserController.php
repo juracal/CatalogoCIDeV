@@ -32,31 +32,71 @@ class UserController extends Controller
       return Datatables::of($roles)->make(true);
     }
 
-
-
-
-
+    public function getProyectos()
+    {
+      return view('dashboard');
+    }
+//----------------------------------------------------------------------------------
 
     public function store ()
     {
-      /*
+
       $user= new User();
       $user->name= request('name');
       $user->last_name=request('last_name');
       $user->email=request('email');
       $user->password=request('password');
-      $user->role_id=2;
+      $role = Role::where('name', request('rls'))->first()->id;
+      $user->role_id= $role;
       $user->remember_token=request('_token');
       $user->save();
-      */
-      $t=2;
-      if ($t == 2)
+
+      $id=$user->id;
+
+
+      if ($role == 2)
       {
-        return redirect('/dashboard');
+        return redirect("/user/".(string)$id."/proyectos");
       }
       else
       {
-        return redirect('/register');
+        return redirect('/create');
       }
 }
+//------------------------------------------------------------------------------------
+
+public function getInfo ($id)
+
+{
+
+
+     $user = User::find($id);
+     if (!$user) return abort(404);
+     return view('/edit',compact('user'));
+
+
+}
+
+public function update (Request $request, $id)
+{
+
+  $user= User::find($id);
+
+
+  if($request->hasFile('avatar'))
+  {
+    $user->image= $request-> file('avatar')->store('public');
+  }
+
+  $user->update($request->only('name','last_name','description','email','avatar'));
+
+
+  return redirect("/user/".(string)$id."/edit");
+
+}
+
+
+
+
+
 }

@@ -13,19 +13,30 @@
 
 
 Route::get('/login','UserController@login');
+Route::get('/create','UserController@create');
+Route::post('/create','UserController@store');
 
-Route::get('/register','UserController@create');
-
-Route::post('/register','UserController@store');
 
 Route::get('/user','UserController@projects');
-
 Route::get('/user/proyectos','UserController@getData');
+
+Route::get('/user/{id}/edit','UserController@getInfo');
+Route::post('/user/{id}/edit','UserController@update');
+
+Route::get('/user/{user}/proyectos','UserController@getProyectos');
+
+
+
+
+Route::get('/user/{user}/proyecto/edit/{project}','UserController@getInfo');
+
+
 //---------------------------------------------------------------------
 
-Route::get('/game/register','GameController@create');
-
-Route::post('/game/register','GameController@store');
+Route::get('/game/create','GameController@create');
+Route::post('/game/create','GameController@store');
+Route::get('/game/{game}','GameController@create');
+Route::get('/game/{game}/edit','GameController@create');
 
 
 

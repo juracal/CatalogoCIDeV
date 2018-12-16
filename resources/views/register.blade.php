@@ -38,7 +38,7 @@
 
 
 
-<form method="post" action="/register">
+<form method="post" action="/create">
   {{csrf_field()}}
 
 
@@ -60,7 +60,7 @@
     <input type="password" name="password" placeholder="Ingrese Contraseña" required></input>
   </div>
 
-  
+
     <select name="rls">
       @foreach($roles as $role)
       <option>{{$role->name}}</option>
