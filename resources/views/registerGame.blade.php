@@ -63,7 +63,9 @@
 
  <div class="split right">
    <div>
-     <input type="file" name="video" placeholder="Video"></input>
+
+     <input  type="file" name="video" placeholder="Video"></input>
+    
    </div>
    <div>
      <input type="file" name="miniature" placeholder="Miniatura" ></input>

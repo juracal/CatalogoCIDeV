@@ -13,31 +13,27 @@
 
 
 Route::get('/login','UserController@login');
-Route::get('/create','UserController@create');
-Route::post('/create','UserController@store');
+Route::post('/login','UserController@authenticate');
+
+Route::get('/create','UserController@createUser');
+Route::post('/create','UserController@storeUser');
 
 
-Route::get('/user','UserController@projects');
+Route::get('/user/{id}/proyectos','UserController@projects');
 Route::get('/user/proyectos','UserController@getData');
 
 Route::get('/user/{id}/edit','UserController@getInfo');
 Route::post('/user/{id}/edit','UserController@update');
 
-Route::get('/user/{user}/proyectos','UserController@getProyectos');
 
+Route::get('/logout','UserController@logout');
 
-
-
-Route::get('/user/{user}/proyecto/edit/{project}','UserController@getInfo');
 
 
 //---------------------------------------------------------------------
 
-Route::get('/game/create','GameController@create');
-Route::post('/game/create','GameController@store');
-Route::get('/game/{game}','GameController@create');
-Route::get('/game/{game}/edit','GameController@create');
-
+Route::get('/user/{id}/project/create','GameController@create');
+Route::get('/user/{id}/project/create','GameController@storeGame');
 
 
 Route::get('/', function () {

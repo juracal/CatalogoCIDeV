@@ -14,7 +14,7 @@ class GameController extends Controller
       return view('registerGame',compact('tags'));
     }
 
-    public function store ()
+    public function storeGame ()
     {
       $tags=Tag::all();
       return view('registerGame',compact('tags'));

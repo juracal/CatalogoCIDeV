@@ -9,7 +9,6 @@
     <title>Editar</title>
 
 
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
     <link href="{{asset('/css/style.css') }}" rel="stylesheet" type="text/css ">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -37,7 +36,7 @@
 
 
     <div class="centered">
-      <img width=400px height="400px" src='{{Storage::url($user->image)}}'></img>
+      <img class="img-rounded" width=300px height="300px" src='{{Storage::url($user->image)}}'></img>
       <input class="inputfile" type="file" name="avatar" placeholder="Ingrese foto de perfil"></input>
     </div>
 
@@ -45,16 +44,20 @@
 
  <div class="split right">
    <div class="centered">
-   <div >
+   <div class="container">
+
      <input class="edit_input" type="text" name="username" value="{{$user->name}}" required></input>
    </div>
    <div>
+      <label>Apellido</label>
      <input class="edit_input" type="text" name="last_name" value="{{$user->last_name}}"required></input>
    </div>
    <div>
+      <label>Descripción</label>
      <textarea  class="edit_input"  name="description">{{$user->description}}</textarea>
    </div>
    <div>
+      <label>Correo Electrónico</label>
      <input class="edit_input" type="text" name="email" value="{{$user->email}}"required></input>
    </div>
 

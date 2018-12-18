@@ -2,8 +2,8 @@
 <html>
 <body>
 
-<form method="post" action="/user">
-
+<form method="post" action="/login">
+{{csrf_field()}}
   <div>
     <h1>Página de Ingreso</h1>
   </div>
