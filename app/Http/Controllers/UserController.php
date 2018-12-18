@@ -7,31 +7,59 @@ use App\User;
 use App\Role;
 use Yajra\Datatables\Datatables;
 use App\Tag;
+use Illuminate\Support\Facades\Auth;
 
 
 class UserController extends Controller
 {
-    //
+    //Autenticar Usuario
     public function login ()
     {
       return view('login');
     }
 
-    public function create ()
+    public function authenticate(Request $request)
     {
-      $roles=Role::all();
-      return view('register',compact('roles'));
+
+      $username=request('username');
+      $password=request('password');
+      $user = User::where('email', '=', $username)->firstOrFail();
+
+      if ($user->password==$password) {
+
+        $credentials = $request->only('email', 'password');
+
+       if (Auth::attempt($credentials)) {
+           // Authentication passed...
+           return redirect()->intended('/login');
+       }
+
+        return redirect("/user/".(string)$user->id."/proyectos");
+      }else{
+        return view('/login');
+      }
     }
 
 
-    public function projects ()
+//-----------------------------------------------------------------------------------------------
+
+    public function projects ($id)
     {
-      return view('dashboard');
+      $user= User::find($id);
+      return view('dashboard',compact('user'));
     }
 
     public function getData(){
       $roles = Role::select(['id','name'])->get();
-      return Datatables::of($roles)->make(true);
+      return Datatables::of($roles)
+      -> addColumn('action', function () {
+                 return '
+                 <a>Ver</a>
+                 <a>Editar</a>
+                 <a>Eliminar</a>';})
+
+      ->make(true);
+
     }
 
     public function getProyectos($id)
@@ -42,8 +70,17 @@ class UserController extends Controller
       return view('registerGame',compact('tags','user'));
     }
 //----------------------------------------------------------------------------------
+//Get-Post para el registro
 
-    public function store ()
+  //Carga la página de registro
+  public function createUser ()
+  {
+    $roles=Role::all();
+    return view('register',compact('roles'));
+  }
+
+  //Inserta el usuario
+    public function storeUser ()
     {
 
       $user= new User();
@@ -55,10 +92,7 @@ class UserController extends Controller
       $user->role_id= $role;
       $user->remember_token=request('_token');
       $user->save();
-
       $id=$user->id;
-
-
       if ($role == 2)
       {
         return redirect("/user/".(string)$id."/proyectos");
@@ -70,25 +104,27 @@ class UserController extends Controller
 }
 //------------------------------------------------------------------------------------
 
+
+//Obtener la información de un usario
 public function getInfo ($id)
 
 {
-
-
      $user = User::find($id);
      if (!$user) return abort(404);
      return view('/edit',compact('user'));
-
-
 }
 
 
+public function logout(){
+  Auth::logout();
+  return redirect('/login');
+}
 
+//------------------------------------------------------------------------------------
+//Actualizar la información de un usuario
 public function update (Request $request, $id)
 {
-
   $user= User::find($id);
-
 
   if($request->hasFile('avatar'))
   {
@@ -96,9 +132,7 @@ public function update (Request $request, $id)
   }
 
   $user->update($request->only('name','last_name','description','email','avatar'));
-
-
-  return redirect("/user/".(string)$id."/edit");
+  return redirect("/user/".(string)$id."/proyectos");
 
 }
 
