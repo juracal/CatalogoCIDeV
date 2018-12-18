@@ -28,7 +28,7 @@
    &nbsp;
   </div>
 
-  <form method="post" action="/register" enctype="multipart/form-data">
+  <form method="post" action="/user/{{$user->id}}/proyectos" enctype="multipart/form-data">
     {{csrf_field()}}
 
   <div class="split left">
@@ -63,7 +63,7 @@
 
  <div class="split right">
    <div>
-     <input type="file" name="video" placeholder="Video"></input>
+     <input type="text" name="video" placeholder="Video"></input>
    </div>
    <div>
      <input type="file" name="miniature" placeholder="Miniatura" ></input>
@@ -87,4 +87,8 @@
      <input type="file" name="fm" placeholder="Archivo de Mac" ></input>
    </div>
 
+
  </div>
+
+
+</form>

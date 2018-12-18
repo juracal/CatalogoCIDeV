@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Role;
 use Yajra\Datatables\Datatables;
+use App\Tag;
+
 
 class UserController extends Controller
 {
@@ -32,9 +34,12 @@ class UserController extends Controller
       return Datatables::of($roles)->make(true);
     }
 
-    public function getProyectos()
+    public function getProyectos($id)
     {
-      return view('dashboard');
+
+      $tags=Tag::all();
+      $user=User::find($id);
+      return view('registerGame',compact('tags','user'));
     }
 //----------------------------------------------------------------------------------
 
@@ -77,6 +82,8 @@ public function getInfo ($id)
 
 }
 
+
+
 public function update (Request $request, $id)
 {
 
@@ -96,7 +103,21 @@ public function update (Request $request, $id)
 }
 
 
+// ---------------------------------- Código JuJo xD ----------------------------------
 
+public function storeGame($id)
+{
+
+  $game = new Game();
+
+  $game->title = request('title');
+  $game->user_id = $id;
+  $game->description = request('description');
+  $game->miniature = $request->file('miniature')->store('public');
+  $game->video = request('video');
+
+
+}
 
 
 }

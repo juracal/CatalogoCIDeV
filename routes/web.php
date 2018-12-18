@@ -23,7 +23,8 @@ Route::get('/user/proyectos','UserController@getData');
 Route::get('/user/{id}/edit','UserController@getInfo');
 Route::post('/user/{id}/edit','UserController@update');
 
-Route::get('/user/{user}/proyectos','UserController@getProyectos');
+Route::get('/user/{id}/proyectos','UserController@getProyectos');
+Route::post('/user/{id}/proyectos', 'UserController@storeGame');
 
 
 
