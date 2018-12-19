@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Role;
 use Yajra\Datatables\Datatables;
-use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -16,7 +15,7 @@ class UserController extends Controller
       return view('login');
     }
 
-    public function authenticate(Request $request)
+    public function authenticate()
     {
 
       $username=request('username');
@@ -24,13 +23,6 @@ class UserController extends Controller
       $user = User::where('email', '=', $username)->firstOrFail();
 
       if ($user->password==$password) {
-
-        $credentials = $request->only('email', 'password');
-
-       if (Auth::attempt($credentials)) {
-           // Authentication passed...
-           return redirect()->intended('/login');
-       }
 
         return redirect("/user/".(string)$user->id."/proyectos");
       }else{

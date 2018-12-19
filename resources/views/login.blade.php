@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
+
+<header>
+<meta name="csrf-token" content="{{ csrf_token() }}">
+</header>
 <body>
 
 <form method="post" action="/login">
-{{csrf_field()}}
   <div>
     <h1>Página de Ingreso</h1>
   </div>
