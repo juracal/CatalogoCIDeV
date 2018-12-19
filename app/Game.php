@@ -26,7 +26,7 @@ class Game extends Model
   {
     return $this->hasMany('App\Comment');
   }
-  
+
   public function record()
   {
     return $this->hasMany('App\Record');
