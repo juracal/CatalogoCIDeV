@@ -5,10 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Role;
-use Yajra\Datatables\Datatables;
-
 use App\Tag;
 use App\Game;
+use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -133,12 +132,13 @@ public function update (Request $request, $id)
 
 // ---------------------------------- Código JuJo xD ----------------------------------
 
+
 public function storeGame($id)
 {
+  $tags = request('tags');
 
-
-  $game = new Game();
   $user = User::find($id);
+  $game = new Game();
 
   $game->title = request('title');
   $game->user_id = $id;
@@ -146,7 +146,16 @@ public function storeGame($id)
   //$game->miniature = $request->file('miniature')->store('public');
   //$game->video = request('video');
   $game->save();
-  return view('/welcome',compact('user'));
+
+  foreach ($tags as $tag) {
+    $tag_id = Tag::where('name', $tag)->first()->id;
+    $game->tag()->attach($tag_id);
+  }
+
+
+  //$id->$game->id;
+
+  return view('/dashboard',compact('user'));
 }
 
 
