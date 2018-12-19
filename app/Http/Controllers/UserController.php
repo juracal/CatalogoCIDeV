@@ -7,6 +7,7 @@ use App\User;
 use App\Role;
 use Yajra\Datatables\Datatables;
 use App\Tag;
+use App\Game;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -83,7 +84,7 @@ class UserController extends Controller
     public function storeUser ()
     {
 
-      $user= new User();
+      $user = new User();
       $user->name= request('name');
       $user->last_name=request('last_name');
       $user->email=request('email');
@@ -142,15 +143,17 @@ public function update (Request $request, $id)
 public function storeGame($id)
 {
 
+
   $game = new Game();
+  $user = User::find($id);
 
   $game->title = request('title');
   $game->user_id = $id;
   $game->description = request('description');
-  $game->miniature = $request->file('miniature')->store('public');
-  $game->video = request('video');
-
-
+  //$game->miniature = $request->file('miniature')->store('public');
+  //$game->video = request('video');
+  $game->save();
+  return view('/welcome',compact('user'));
 }
 
 
