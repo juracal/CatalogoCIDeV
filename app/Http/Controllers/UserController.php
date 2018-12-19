@@ -6,6 +6,12 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Role;
 use Yajra\Datatables\Datatables;
+<<<<<<< HEAD
+=======
+use App\Tag;
+use Illuminate\Support\Facades\Auth;
+>>>>>>> 36d2fdc1a8c5710697a8779571b8ab86c384b402
+
 
 class UserController extends Controller
 {
@@ -52,9 +58,12 @@ class UserController extends Controller
 
     }
 
-    public function getProyectos()
+    public function getProyectos($id)
     {
-      return view('dashboard');
+
+      $tags=Tag::all();
+      $user=User::find($id);
+      return view('registerGame',compact('tags','user'));
     }
 //----------------------------------------------------------------------------------
 //Get-Post para el registro
@@ -122,5 +131,23 @@ public function update (Request $request, $id)
   return redirect("/user/".(string)$id."/proyectos");
 
 }
+
+
+// ---------------------------------- Código JuJo xD ----------------------------------
+
+public function storeGame($id)
+{
+
+  $game = new Game();
+
+  $game->title = request('title');
+  $game->user_id = $id;
+  $game->description = request('description');
+  $game->miniature = $request->file('miniature')->store('public');
+  $game->video = request('video');
+
+
+}
+
 
 }

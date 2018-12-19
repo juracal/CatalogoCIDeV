@@ -25,6 +25,9 @@ Route::get('/user/proyectos','UserController@getData');
 Route::get('/user/{id}/edit','UserController@getInfo');
 Route::post('/user/{id}/edit','UserController@update');
 
+Route::get('/user/{id}/proyectos','UserController@getProyectos');
+Route::post('/user/{id}/proyectos', 'UserController@storeGame');
+
 
 Route::get('/logout','UserController@logout');
 
