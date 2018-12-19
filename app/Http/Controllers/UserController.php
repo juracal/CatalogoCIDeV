@@ -59,7 +59,6 @@ class UserController extends Controller
 
     public function getProyectos($id)
     {
-
       $tags=Tag::all();
       $user=User::find($id);
       return view('registerGame',compact('tags','user'));

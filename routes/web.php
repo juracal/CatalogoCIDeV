@@ -25,8 +25,8 @@ Route::get('/user/proyectos','UserController@getData');
 Route::get('/user/{id}/edit','UserController@getInfo');
 Route::post('/user/{id}/edit','UserController@update');
 
-Route::get('/user/{id}/proyectos','UserController@getProyectos');
-Route::post('/user/{id}/proyectos', 'UserController@storeGame');
+Route::get('/user/{id}/proyectos/create','GameController@create');
+Route::post('/user/{id}/proyectos/create', 'UserController@storeGame');
 
 
 Route::get('/logout','UserController@logout');
@@ -35,8 +35,7 @@ Route::get('/logout','UserController@logout');
 
 //---------------------------------------------------------------------
 
-Route::get('/user/{id}/project/create','GameController@create');
-Route::get('/user/{id}/project/create','GameController@storeGame');
+
 
 
 Route::get('/', function () {

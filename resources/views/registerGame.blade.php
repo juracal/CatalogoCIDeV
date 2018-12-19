@@ -32,7 +32,7 @@
    &nbsp;
   </div>
 
-  <form method="post" action="/user/{{$user->id}}/project/create" enctype="multipart/form-data">
+  <form method="post" action="/user/{{$user->id}}/proyectos/create" enctype="multipart/form-data">
     {{csrf_field()}}
 
   <div class="split left">

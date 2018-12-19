@@ -11,9 +11,9 @@ class GameController extends Controller
     //
     public function create ($id)
     {
-      $user= User::find($id);
       $tags=Tag::all();
-      return view('/registerGame',compact('user'));
+      $user=User::find($id);
+      return view('registerGame',compact('tags','user'));
     }
 
     public function storeGame ()
