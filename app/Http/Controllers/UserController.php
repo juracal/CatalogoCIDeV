@@ -6,11 +6,9 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Role;
 use Yajra\Datatables\Datatables;
-<<<<<<< HEAD
-=======
+
 use App\Tag;
 use Illuminate\Support\Facades\Auth;
->>>>>>> 36d2fdc1a8c5710697a8779571b8ab86c384b402
 
 
 class UserController extends Controller

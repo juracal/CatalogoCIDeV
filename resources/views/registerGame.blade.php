@@ -32,7 +32,7 @@
    &nbsp;
   </div>
 
-  <form method="post" action="/user/{{$user->id}}/proyectos" enctype="multipart/form-data">
+  <form method="post" action="/user/{{$user->id}}/project/create" enctype="multipart/form-data">
     {{csrf_field()}}
 
   <div class="split left">
@@ -67,13 +67,12 @@
 
  <div class="split right">
    <div>
-<<<<<<< HEAD
+
 
      <input  type="file" name="video" placeholder="Video"></input>
 
-=======
      <input type="text" name="video" placeholder="Video"></input>
->>>>>>> 36d2fdc1a8c5710697a8779571b8ab86c384b402
+
    </div>
    <div>
      <input type="file" name="miniature" placeholder="Miniatura" ></input>
