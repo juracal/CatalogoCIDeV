@@ -42,9 +42,9 @@ class GameController extends Controller
       return view('editGame', compact('user', 'game'));
     }
 
-    public function getInfo($game_id){
+    public function getInfo($user_id, $game_id){
       $game = Game::find($game_id);
-      $user = User::find($game->user_id);
+      $user = User::find($user_id);
       $tags = Tag::all();
       if (!$game) return abort(404);
 
@@ -150,10 +150,6 @@ class GameController extends Controller
 
     public function projects ($id)
     {
-<<<<<<< HEAD
-=======
-
->>>>>>> 8ec88f8ca201e9a6011d0965eaaa547817795a7f
       $user= User::find($id);
       return view('dashboard',compact('user'));
     }

@@ -47,7 +47,7 @@
       <textarea class="form-control" style="margin-top:20px;margin-bottom:20px;"  name="description" required>{{$game->description}}</textarea>
     </div>
 
-    <select data-live-search="true"  style="margin-top:50px;" class="selectpicker form-control"  name="tags[]" multiple>
+    <select data-live-search="true"  style="margin-top:50px;" class="selectpicker form-control"  name="tags[]" multiple required>
       @foreach($tags as $tag)
       <option>{{$tag->name}}</option>
       @endforeach
