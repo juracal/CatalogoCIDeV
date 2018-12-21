@@ -4,8 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+
+
 class Game extends Model
 {
+
+  protected $fillable=['title','user_id','description','video','hidden'];
+
 
   public function images()
   {
