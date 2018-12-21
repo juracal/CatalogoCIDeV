@@ -82,11 +82,14 @@
        <div>
          <input class="form-control input_register" type="password" name="password" value="{{$user->name}}" required></input>
        </div>
+
+       
        <select class="form-control input_register" name="rls">
           @foreach ($roles as $role)
             <option>{{ $role->name }}</option>
           @endforeach
       </select>
+
        <div>
          <button class="button_register btn btn-success form-control" type="submit" > Editar </button>
        </div>

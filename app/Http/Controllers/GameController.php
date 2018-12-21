@@ -8,15 +8,21 @@ use App\Game;
 use App\User;
 use App\Role;
 use Yajra\Datatables\Datatables;
+use Illuminate\Support\Facades\Auth;
 
 class GameController extends Controller
 {
     //
     public function create ($id)
     {
+      if(Auth::user()){
       $tags=Tag::all();
       $user=User::find($id);
       return view('registerGame',compact('tags','user'));
+    }
+    else{
+      return redirect('/login');
+    }
     }
 
     public function storeGame ()

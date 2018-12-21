@@ -30,8 +30,10 @@ class UserController extends Controller
       $user = User::where('email', '=', $username)->firstOrFail();
 
       if ($user->password==$password) {
+        Auth::login($user);
 
         return redirect("/user/".(string)$user->id."/proyectos");
+
       }else{
         return view('login');
       }
@@ -47,8 +49,13 @@ class UserController extends Controller
   //Carga la página de registro
   public function createUser ()
   {
+    if(Auth::user()){
     $roles=Role::all();
     return view('register',compact('roles'));
+  }
+  else{
+    return view('/login');
+  }
   }
 
   //Inserta el usuario
@@ -69,11 +76,11 @@ class UserController extends Controller
       $user->remember_token=request('_token');
       $user->save();
       $id_new=$user->id;
-      if ($role == 2)
+      if ($role == 1 and Auth::user())
       {
         return redirect("/user/".(string)$id_new."/proyectos");
       }
-      else
+      if ($role == 2 and Auth::user())
       {
         return redirect("/user/".(string)$id_new."/proyectos");
       }
@@ -120,8 +127,13 @@ public function update (Request $request, $id)
 
 
 public function getUsersView($id){
+  if (Auth::user()){
   $user=User::find($id);
   return view('allUsers',compact('user'));
+}
+else{
+  return view('/login');
+}
 }
 
 public function getUsers(){

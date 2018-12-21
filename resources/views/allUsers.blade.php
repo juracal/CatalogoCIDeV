@@ -29,7 +29,7 @@
              <li class="home"><a href="/user/{{$user->id}}/proyectos">Juegos</a></li>
              <li class="tutorials" id="usuarios"><a href="#">Usuarios</a></li>
             <li class="tutorials" ><a href="#">Notificaciones</a></li>
-
+            @if (Auth::id())
              <li id="profile" style="float:right;"><img class="img_prof" style="width:50px;height:50px;border-radius: 50%;" src="{{Storage::url($user->image)}}"></img>
                <label style="opacity: 0.50">{{$user->name}}</label>
                <ul>
@@ -37,10 +37,11 @@
                  <li  id="profile"><a href="/logout">Cerrar Sesión</a></li>
                </ul>
              </li>
+             @endif
            </ul>
          </div>
 
-
+@if (Auth::id())
    <div style="margin-top:30px;">
   <a class="fa fa-plus btn btn-warning" id="btn-table" href="/create">Nuevo Usuario</a>
 </div>
@@ -62,6 +63,9 @@
            </thead>
        </table>
 </div>
+@else {return redirect('/login');}
+
+@endif
 
 
 <script>

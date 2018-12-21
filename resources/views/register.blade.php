@@ -82,7 +82,7 @@
        <div>
          <input class="form-control input_register" type="password" name="password" placeholder="Contraseña" required></input>
        </div>
-
+       
        <select class="form-control input_register" name="rls">
           @foreach ($roles as $role)
             <option>{{ $role->name }}</option>
