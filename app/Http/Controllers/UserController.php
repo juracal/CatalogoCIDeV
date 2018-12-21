@@ -12,8 +12,6 @@ use App\Image;
 use App\Archive;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
-use Session;
 
 
 class UserController extends Controller
@@ -103,13 +101,15 @@ class UserController extends Controller
 
 
 //Obtener la información de un usario
-public function getInfo ($id)
+public function getInfo ($id,$usuario)
 
 {
-     $user = User::find($id);
+
+     $user = User::find($usuario);
      $roles = Role::all();
+     $id_user= $id;
      if (!$user) return abort(404);
-     return view('/edit',compact('user','roles'));
+     return view('/edit',compact('id_user','user','roles'));
 }
 
 
@@ -120,9 +120,9 @@ public function logout(){
 
 //------------------------------------------------------------------------------------
 //Actualizar la información de un usuario
-public function update (Request $request, $id)
+public function update (Request $request,$id,$usuario)
 {
-  $user= User::find($id);
+  $user= User::find($usuario);
 
 
   if($request->hasFile('avatar'))
@@ -137,7 +137,8 @@ public function update (Request $request, $id)
 
 
   $user->update($request->only('name','last_name','description','email','avatar',$role));
-  return Redirect::to(Session::get('backUrl'));
+  return redirect("/user/".$id."/proyectos");
+
 }
 
 
@@ -177,7 +178,6 @@ public function deleteUser($id){
 
 
 
-<<<<<<< HEAD
 // ---------------------------------- Código JuJo xD ----------------------------------
 
 
@@ -273,7 +273,5 @@ public function storeGame(Request $request, $id)
   return view('/dashboard',compact('user'));
 }
 
-=======
->>>>>>> fafe68b4f7b0fd76514640a291d10e2d7ff6258a
 
 }

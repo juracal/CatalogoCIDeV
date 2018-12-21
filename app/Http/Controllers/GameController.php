@@ -109,7 +109,7 @@ class GameController extends Controller
 
     public function projects ($id)
     {
-      Session::flash('backUrl', Request::fullUrl());
+
       $user= User::find($id);
       return view('dashboard',compact('user'));
     }
@@ -128,10 +128,7 @@ class GameController extends Controller
       }
       return Datatables::of($roles)
       -> addColumn('action', function () {
-                 return '
-                 <a class="fa fa-eye btn btn-info" id="btn-table">Ver</a>
-                 <a class="fa fa-edit btn btn-warning" id="btn-table">Editar</a>
-                 <a class="fa fa-trash btn btn-danger" id="btn-table" >Eliminar</a>';})
+                 return ;})
 
       ->make(true);
 
