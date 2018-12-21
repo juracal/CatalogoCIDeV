@@ -12,8 +12,6 @@ use App\Image;
 use App\Archive;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
-use Session;
 
 
 class UserController extends Controller
@@ -103,13 +101,15 @@ class UserController extends Controller
 
 
 //Obtener la información de un usario
-public function getInfo ($id)
+public function getInfo ($id,$usuario)
 
 {
-     $user = User::find($id);
+
+     $user = User::find($usuario);
      $roles = Role::all();
+     $id_user= $id;
      if (!$user) return abort(404);
-     return view('/edit',compact('user','roles'));
+     return view('/edit',compact('id_user','user','roles'));
 }
 
 
@@ -120,9 +120,9 @@ public function logout(){
 
 //------------------------------------------------------------------------------------
 //Actualizar la información de un usuario
-public function update (Request $request, $id)
+public function update (Request $request,$id,$usuario)
 {
-  $user= User::find($id);
+  $user= User::find($usuario);
 
 
   if($request->hasFile('avatar'))
@@ -137,7 +137,8 @@ public function update (Request $request, $id)
 
 
   $user->update($request->only('name','last_name','description','email','avatar',$role));
-  return Redirect::to(Session::get('backUrl'));
+  return redirect("/user/".$id."/proyectos");
+
 }
 
 
@@ -173,4 +174,107 @@ public function deleteUser($id){
 
 
 
+<<<<<<< HEAD
+=======
+
+
+
+
+// ---------------------------------- Código JuJo xD ----------------------------------
+
+
+public function storeGame(Request $request, $id)
+{
+  $tags = request('tags');
+
+
+  $user = User::find($id);
+  $game = new Game();
+
+  $game->title = request('title');
+  $game->user_id = $id;
+  $game->description = request('description');
+  //$game->miniature = $request->file('miniature')->store('public');
+  $game->video = request('video');
+  $game->hidden= 'True';
+  $game->save();
+  $id_new=$game->id;
+
+  foreach ($tags as $tag) {
+    $tag_id = Tag::where('name', $tag)->first()->id;
+    $game->tag()->attach($tag_id);
+  }
+
+
+  $imag_obj= new Image();
+
+  if($request->hasFile('ss1'))
+  {
+    $imag_obj->url=$request-> file('ss1')->store('public');
+  }
+  $imag_obj->game_id=$id_new;
+  $imag_obj->save();
+
+  $imag_obj2= new Image();
+  if($request->hasFile('ss2'))
+  {
+    $imag_obj2->url=$request-> file('ss2')->store('public');
+  }
+  $imag_obj2->game_id=$id_new;
+  $imag_obj2->save();
+
+  $imag_obj3= new Image();
+  if($request->hasFile('ss3'))
+  {
+    $imag_obj3->url=$request-> file('ss3')->store('public');
+  }
+  $imag_obj3->game_id=$id_new;
+  $imag_obj3->save();
+
+
+  $archive_obj= new Archive();
+
+  if($request->hasFile('fw'))
+  {
+    $archive_obj->url=$request-> file('fw')->store('public');
+  }
+  $archive_obj->game_id=$id_new;
+  $archive_obj->operative_system='Windows';
+  $archive_obj->save();
+
+
+
+
+  $archive_obj2= new Archive();
+  if($request->hasFile('fl'))
+  {
+    $archive_obj2->url=$request-> file('fl')->store('public');
+  }
+  $archive_obj2->game_id=$id_new;
+  $archive_obj2->operative_system='Linux';
+  $archive_obj2->save();
+
+
+
+
+  $archive_obj3= new Archive();
+  if($request->hasFile('fm'))
+  {
+    $archive_obj3->url=$request-> file('fm')->store('public');
+  }
+
+  $archive_obj3->game_id=$id_new;
+  $archive_obj3->operative_system='Mac';
+  $archive_obj3->save();
+
+
+
+
+
+
+  return view('/dashboard',compact('user'));
+}
+
+
+>>>>>>> 8ec88f8ca201e9a6011d0965eaaa547817795a7f
 }
