@@ -67,28 +67,28 @@
        <div class="centered">
 
        <div>
-         <input class="input_register" type="text" name="username" value="{{$user->name}}" required></input>
+         <input class="form-control input_register" type="text" name="username" value="{{$user->name}}" required></input>
        </div>
        <div>
-         <input class="input_register" type="text" name="last_name" value="{{$user->last_name}}" required></input>
+         <input class="form-control input_register" type="text" name="last_name" value="{{$user->last_name}}" required></input>
        </div>
        <div>
 
-         <textarea  class="input_register"  name="description" >{{$user->description}}</textarea>
+         <textarea  class="form-control input_register"  name="description" >{{$user->description}}</textarea>
        </div>
        <div>
-         <input class="input_register" type="text" name="email" value="{{$user->email}}" required></input>
+         <input class="form-control input_register" type="text" name="email" value="{{$user->email}}" required></input>
        </div>
        <div>
-         <input class="input_register" type="password" name="password" value="{{$user->name}}" required></input>
+         <input class="form-control input_register" type="password" name="password" value="{{$user->name}}" required></input>
        </div>
-       <select class="input_register" name="rls">
+       <select class="form-control input_register" name="rls">
           @foreach ($roles as $role)
             <option>{{ $role->name }}</option>
           @endforeach
       </select>
        <div>
-         <button class="button_register" type="submit" > Editar </button>
+         <button class="button_register btn btn-success form-control" type="submit" > Editar </button>
        </div>
 
 

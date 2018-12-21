@@ -67,30 +67,30 @@
        <div class="centered">
 
        <div>
-         <input class="input_register" type="text" name="username" placeholder="Nombre" required></input>
+         <input class=" form-control input_register" type="text" name="username" placeholder="Nombre" required></input>
        </div>
        <div>
-         <input class="input_register" type="text" name="last_name" placeholder="Apellido" required></input>
+         <input class=" form-control input_register" type="text" name="last_name" placeholder="Apellido" required></input>
        </div>
        <div>
 
-         <textarea  class="input_register"  name="description" placeholder="Descripción"></textarea>
+         <textarea  class="form-control input_register"  name="description" placeholder="Descripción"></textarea>
        </div>
        <div>
-         <input class="input_register" type="text" name="email" placeholder="Correo Electrónico" required></input>
+         <input class="form-control input_register" type="text" name="email" placeholder="Correo Electrónico" required></input>
        </div>
        <div>
-         <input class="input_register" type="password" name="password" placeholder="Contraseña" required></input>
+         <input class="form-control input_register" type="password" name="password" placeholder="Contraseña" required></input>
        </div>
 
-       <select class="input_register" name="rls">
+       <select class="form-control input_register" name="rls">
           @foreach ($roles as $role)
             <option>{{ $role->name }}</option>
           @endforeach
       </select>
 
        <div>
-         <button class="button_register" type="submit" > Crear </button>
+         <button class="button_register btn btn-success form-control" type="submit" > Crear </button>
        </div>
 
 

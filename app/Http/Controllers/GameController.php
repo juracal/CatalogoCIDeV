@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Tag;
+use App\Game;
 use App\User;
 use App\Role;
 use Yajra\Datatables\Datatables;
@@ -33,7 +34,7 @@ class GameController extends Controller
 
 
     public function getData(){
-      $roles = Role::select(['id','name'])->get();
+      $roles = Game::select(['id','title','description'])->get();
       return Datatables::of($roles)
       -> addColumn('action', function () {
                  return '

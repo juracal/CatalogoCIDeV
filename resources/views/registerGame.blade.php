@@ -40,23 +40,27 @@
   <div class="split left">
     <div class="centered">
     <div>
-      <input class="input_register" type="text" name="title" placeholder="Título" required></input>
+      <input class="form-control"  type="text" name="title" placeholder="Título" required></input>
     </div>
 
     <div >
-      <textarea class="input_register "  name="description" placeholder="Descripción" required></textarea>
+      <textarea class="form-control" style="margin-top:20px;margin-bottom:20px;"  name="description" placeholder="Descripción" required></textarea>
     </div>
 
-    <select data-live-search="true"  class="selectpicker input_register"  name="tags[]" multiple>
+    <select data-live-search="true" style="margin-top:50px;" class="selectpicker form-control"  name="tags[]" multiple>
       @foreach($tags as $tag)
       <option>{{$tag->name}}</option>
       @endforeach
     </select>
-    <div  >
-      <input class="input_register" type="text" name="video" placeholder="Video" required></input>
+    <div>
+      <input class="form-control" style="margin-top:20px;" type="text" name="video" placeholder="Video" required></input>
     </div>
 
+    <div>
+     <a class="fa fa-arrow-left btn btn-primary btn-back" href="{{ URL::previous()}}"> Go Back</a>
+    </div>
   </div>
+
 
 
 </div>
@@ -125,7 +129,7 @@
     </label>
    </div>
 
-   
+
 
 
 
@@ -133,8 +137,10 @@
 
 </div>
 
+
 <div>
-  <button class="btn_accept" type="submit">Guardar</button>
+  <button class="btn_accept btn-success formal-form btn btn-lg" type="submit">Guardar</button>
 </div>
+
 
 </form>

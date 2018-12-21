@@ -19,9 +19,9 @@
 
 
 .input_register{
-  margin-top: 35px;
+  margin-top: 20px;
 
-  border-radius: 8px;
+
   width: 80%;
   padding: 5px;
 }
@@ -86,18 +86,6 @@ input:focus, textarea:focus {
 
 }
 
-.centered {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  width: 80%;
-background-color: #244c58;
-
-  height: 430px;
-
-}
 .edit_input{
   width: 100%;
   margin-top: 30px;
@@ -269,7 +257,7 @@ label{
 
 
   margin-left:50px;
-  
+
   width: 80%;
   text-align: center;
   margin-top: 5px;
@@ -289,7 +277,7 @@ label{
 }
 .btn_accept{
 
-  margin-top: 500px;
-  margin-left: 600px;
+  margin-top: 490px;
+  margin-left:45%;
 
 }

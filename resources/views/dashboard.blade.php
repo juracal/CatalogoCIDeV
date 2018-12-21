@@ -60,6 +60,7 @@
                <tr>
                    <th style="display:none">Id</th>
                    <th>Name</th>
+                   <th>Description</th>
                    <th style="display:none;"><th>
                </tr>
            </thead>
@@ -80,7 +81,8 @@
 
                columns: [
 
-       {data: 'name', name: 'name',className:"center"},
+       {data: 'title', name: 'title',className:"center"},
+       {data: 'description', name: 'description',className:"center"},
        {data: 'action', name: 'action',className:"center"},
 
 
