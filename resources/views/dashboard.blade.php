@@ -26,10 +26,23 @@
 
       <div class="nav">
            <ul>
+             @if (Auth::id() and $user->role_id ==1)
              <li class="home"><a href=>Juegos</a></li>
              <li class="tutorials" id="usuarios"><a href="/user/{{$user->id}}/usuarios">Usuarios</a></li>
             <li class="tutorials" ><a href="#">Notificaciones</a></li>
-            @if (Auth::id())
+
+             <li id="profile" style="float:right;"><img class="img_prof" style="width:50px;height:50px;border-radius: 50%;" src="{{Storage::url($user->image)}}"></img>
+               <label style="opacity: 0.50">{{$user->name}}</label>
+               <ul>
+                 <li id="profile"><a href="/user/{{$user->id}}/edit">Mi Perfil</a></li>
+                 <li  id="profile"><a href="/logout">Cerrar Sesión</a></li>
+               </ul>
+             </li>
+             @endif
+
+             @if (Auth::id() and $user->role_id == 2)
+             <li class="tutorials" id="usuarios"><a href="/user/{{$user->id}}/proyectos">Mis Juegos</a></li>
+
              <li id="profile" style="float:right;"><img class="img_prof" style="width:50px;height:50px;border-radius: 50%;" src="{{Storage::url($user->image)}}"></img>
                <label style="opacity: 0.50">{{$user->name}}</label>
                <ul>
@@ -75,7 +88,7 @@
                serverSide: true,
                lengthChange: false,
                bInfo: false,
-               ajax: 'http://127.0.0.1:8000/user/proyectos',
+               ajax: 'http://127.0.0.1:8000/user/proyectos/{{$user->id}}',
                headers: {
        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
  },

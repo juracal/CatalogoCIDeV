@@ -82,12 +82,13 @@
        <div>
          <input class="form-control input_register" type="password" name="password" placeholder="Contraseña" required></input>
        </div>
-       
+       @if (Auth::id())
        <select class="form-control input_register" name="rls">
           @foreach ($roles as $role)
             <option>{{ $role->name }}</option>
           @endforeach
       </select>
+      @endif
 
        <div>
          <button class="button_register btn btn-success form-control" type="submit" > Crear </button>

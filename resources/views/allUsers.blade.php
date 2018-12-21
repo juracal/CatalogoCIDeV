@@ -41,7 +41,7 @@
            </ul>
          </div>
 
-@if (Auth::id())
+
    <div style="margin-top:30px;">
   <a class="fa fa-plus btn btn-warning" id="btn-table" href="/create">Nuevo Usuario</a>
 </div>
@@ -63,9 +63,9 @@
            </thead>
        </table>
 </div>
-@else {return redirect('/login');}
 
-@endif
+
+
 
 
 <script>

@@ -33,14 +33,23 @@ class GameController extends Controller
 
     public function projects ($id)
     {
+      Session::flash('backUrl', Request::fullUrl());
       $user= User::find($id);
       return view('dashboard',compact('user'));
     }
 
 
 
-    public function getData(){
-      $roles = Game::select(['id','title','description'])->get();
+    public function getData($id){
+
+      $user=User::find($id);
+      if($user->role_id == 2){
+      $roles = Game::select(['id','title','description'])->where('hidden','True')->where('user_id',$id)->get();
+      }
+      else
+      {
+        $roles = Game::select(['id','title','description'])->get();
+      }
       return Datatables::of($roles)
       -> addColumn('action', function () {
                  return '

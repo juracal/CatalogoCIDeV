@@ -12,6 +12,8 @@ use App\Image;
 use App\Archive;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use Session;
 
 
 class UserController extends Controller
@@ -49,13 +51,10 @@ class UserController extends Controller
   //Carga la página de registro
   public function createUser ()
   {
-    if(Auth::user()){
+
     $roles=Role::all();
     return view('register',compact('roles'));
-  }
-  else{
-    return view('/login');
-  }
+
   }
 
   //Inserta el usuario
@@ -69,21 +68,36 @@ class UserController extends Controller
       $user->password=request('password');
       $user->description=request('description');
       $user->image= $request-> file('avatar')->store('public');
-      $role = Role::where('name', request('rls'))->first()->id;
-      $user->role_id= $role;
+      $user->remember_token=request('_token');
+
       $user->hidden= 'True';
 
-      $user->remember_token=request('_token');
-      $user->save();
-      $id_new=$user->id;
-      if ($role == 1 and Auth::user())
+
+
+      if (Auth::user())
       {
+        $role = Role::where('name', request('rls'))->first()->id;
+        $user->role_id= $role;
+
+
+        if($role == 1){
+          $user->save();
+        }
+        return redirect("/create");
+      }
+      else
+      {
+        $user->role_id= 2;
+        $user->save();
+        $id_new=$user->id;
+        Auth::login($user);
         return redirect("/user/".(string)$id_new."/proyectos");
       }
-      if ($role == 2 and Auth::user())
-      {
-        return redirect("/user/".(string)$id_new."/proyectos");
-      }
+
+
+
+
+
 }
 //------------------------------------------------------------------------------------
 
@@ -115,12 +129,15 @@ public function update (Request $request, $id)
   {
     $user->image= $request-> file('avatar')->store('public');
   }
+
+  $role= $user->role_id;
+  if($user->role_id == 1){
   $role = Role::where('name', request('rls'))->first()->id;
+}
 
 
   $user->update($request->only('name','last_name','description','email','avatar',$role));
-  return redirect("/user/".(string)$id."/proyectos");
-
+  return Redirect::to(Session::get('backUrl'));
 }
 
 
@@ -185,38 +202,64 @@ public function storeGame(Request $request, $id)
     $game->tag()->attach($tag_id);
   }
 
+
   $imag_obj= new Image();
 
-  $imag_obj->url=$request-> file('ss1')->store('public');
+  if($request->hasFile('ss1'))
+  {
+    $imag_obj->url=$request-> file('ss1')->store('public');
+  }
   $imag_obj->game_id=$id_new;
   $imag_obj->save();
 
   $imag_obj2= new Image();
-  $imag_obj2->url=$request-> file('ss2')->store('public');
+  if($request->hasFile('ss2'))
+  {
+    $imag_obj2->url=$request-> file('ss2')->store('public');
+  }
   $imag_obj2->game_id=$id_new;
   $imag_obj2->save();
 
   $imag_obj3= new Image();
-  $imag_obj3->url=$request-> file('ss3')->store('public');
+  if($request->hasFile('ss3'))
+  {
+    $imag_obj3->url=$request-> file('ss3')->store('public');
+  }
   $imag_obj3->game_id=$id_new;
   $imag_obj3->save();
 
 
   $archive_obj= new Archive();
 
-  $archive_obj->url=$request-> file('fw')->store('public');
+  if($request->hasFile('fw'))
+  {
+    $archive_obj->url=$request-> file('fw')->store('public');
+  }
   $archive_obj->game_id=$id_new;
   $archive_obj->operative_system='Windows';
   $archive_obj->save();
 
+
+
+
   $archive_obj2= new Archive();
-  $archive_obj2->url=$request-> file('fl')->store('public');
+  if($request->hasFile('fl'))
+  {
+    $archive_obj2->url=$request-> file('fl')->store('public');
+  }
   $archive_obj2->game_id=$id_new;
   $archive_obj2->operative_system='Linux';
   $archive_obj2->save();
 
+
+
+
   $archive_obj3= new Archive();
-  $archive_obj3->url=$request-> file('fm')->store('public');
+  if($request->hasFile('fm'))
+  {
+    $archive_obj3->url=$request-> file('fm')->store('public');
+  }
+
   $archive_obj3->game_id=$id_new;
   $archive_obj3->operative_system='Mac';
   $archive_obj3->save();

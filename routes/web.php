@@ -20,7 +20,7 @@ Route::post('/create','UserController@storeUser');
 
 
 Route::get('/user/{id}/proyectos','GameController@projects');
-Route::get('/user/proyectos','GameController@getData');
+Route::get('/user/proyectos/{id}','GameController@getData');
 
 Route::get('/user/{id}/edit','UserController@getInfo');
 Route::post('/user/{id}/edit','UserController@update');
