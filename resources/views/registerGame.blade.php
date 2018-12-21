@@ -8,6 +8,8 @@
 
     <title>Registro de Juego</title>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <link href="{{asset('/css/style.css') }}" rel="stylesheet" type="text/css ">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -22,7 +24,7 @@
 </head>
 <body>
   <div class="h1">
-    <h1>Página de Registro</h1>
+    <h1>Registrar Juego</h1>
   </div>
 
   <div class="block">
@@ -36,29 +38,28 @@
     {{csrf_field()}}
 
   <div class="split left">
+    <div class="centered">
     <div>
-      <input type="text" name="title" placeholder="Título" required></input>
+      <input class="input_register" type="text" name="title" placeholder="Título" required></input>
     </div>
 
-    <div>
-      <textarea  name="description" placeholder="Descripción" required></textarea>
+    <div >
+      <textarea class="input_register "  name="description" placeholder="Descripción" required></textarea>
     </div>
 
-    <select data-live-search="true"  class="selectpicker"  name="tags[]" multiple>
+    <select data-live-search="true"  class="selectpicker input_register"  name="tags[]" multiple>
       @foreach($tags as $tag)
       <option>{{$tag->name}}</option>
       @endforeach
     </select>
-    <div>
-      <input type="text" name="genre" placeholder="Género" required></input>
+    <div  >
+      <input class="input_register" type="text" name="video" placeholder="Video" required></input>
     </div>
-    <div>
-      <input type="text" name="url" placeholder="Url Local" required></input>
-    </div>
+
   </div>
 
 
-
+</div>
 
 
 
@@ -66,40 +67,74 @@
 
 
  <div class="split right">
-   <div>
+   <div class="centered2">
+
+   <div class=input_register2>
+     <label class="btn btn-default fa fa-image">
+     Adjuntar  Miniatura<input type="file" >
+    </label>
+   </div>
 
 
-     <input  type="file" name="video" placeholder="Video"></input>
+   <div class=input_register2>
+     <label class="btn btn-default fa fa-image">
+     Adjuntar  Screenshot1 <input type="file" >
+    </label>
+   </div>
 
-     <input type="text" name="video" placeholder="Video"></input>
 
+
+   <div class=input_register2>
+     <label class="btn btn-default  fa fa-image">
+     Adjuntar  Screenshot 2 <input type="file" >
+    </label>
    </div>
-   <div>
-     <input type="file" name="miniature" placeholder="Miniatura" ></input>
+
+
+   <div class=input_register2>
+
+     <label class="btn btn-default fa fa-image">
+     Adjuntar Archivo Screenshot 3 <input type="file" >
+    </label>
    </div>
-   <div>
-     <input type="file" name="ss1" placeholder="Screenshot1" ></input>
+
+
+
+   <div class=input_register2>
+
+     <label class="btn btn-default fa fa-windows ">
+     Adjuntar Archivo Windows <input type="file" >
+    </label>
    </div>
-   <div>
-     <input type="file" name="ss2" placeholder="Screenshot2" ></input>
+
+
+
+
+   <div class=input_register2>
+     <label class="btn btn-default fa fa-linux  ">
+     Adjuntar Archivo Linux <input type="file" >
+    </label>
+  </div>
+
+
+
+
+   <div class=input_register2>
+     <label class=" btn btn-default fa fa-apple ">
+     Adjuntar Archivo Mac <input type="file" >
+    </label>
    </div>
-   <div>
-     <input type="file" name="ss3" placeholder="Screenshot3" ></input>
-   </div>
-   <div>
-     <input type="file" name="fw" placeholder="Archivo de Windows"></input>
-   </div>
-   <div>
-     <input type="file" name="fl" placeholder="Archivo de Linux" ></input>
-   </div>
-   <div>
-     <input type="file" name="fm" placeholder="Archivo de Mac" ></input>
-   </div>
+
+   
+
 
 
  </div>
- <div>
-   <button type="submit">Guardar</button>
- </div>
+
+</div>
+
+<div>
+  <button class="btn_accept" type="submit">Guardar</button>
+</div>
 
 </form>
