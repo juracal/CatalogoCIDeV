@@ -177,6 +177,7 @@ public function deleteUser($id){
 
 
 
+<<<<<<< HEAD
 // ---------------------------------- Código JuJo xD ----------------------------------
 
 
@@ -272,5 +273,7 @@ public function storeGame(Request $request, $id)
   return view('/dashboard',compact('user'));
 }
 
+=======
+>>>>>>> fafe68b4f7b0fd76514640a291d10e2d7ff6258a
 
 }
