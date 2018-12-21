@@ -7,6 +7,8 @@ use App\Tag;
 use App\Game;
 use App\User;
 use App\Role;
+use App\Image;
+use App\Archive;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,7 +20,7 @@ class GameController extends Controller
       if(Auth::user()){
       $tags=Tag::all();
       $user=User::find($id);
-      return view('registerGame',compact('tags','user'));
+      return view('registerGame',compact('user','tags'));
     }
     else{
       return redirect('/login');
@@ -38,6 +40,16 @@ class GameController extends Controller
 
 
       return view('editGame', compact('user', 'game'));
+    }
+
+    public function getInfo($game_id){
+      $game = Game::find($game_id);
+      $user = User::find($game->user_id);
+      $tags = Tag::all();
+      if (!$game) return abort(404);
+
+      return view('/editGame',compact('user','game', 'tags'));
+
     }
 
     public function storeGame(Request $request, $id)
@@ -63,38 +75,67 @@ class GameController extends Controller
 
       //$game->miniature = $request->file('miniature')->store('public');
 
-      $imag_obj= new Image();
 
-      $imag_obj->url=$request-> file('ss1')->store('public');
-      $imag_obj->game_id=$id_new;
-      $imag_obj->save();
+
+
+      $imag_obj = new Image();
+
+      if($request->hasFile('ss1'))
+      {
+        $imag_obj->url=$request-> file('ss1')->store('public');
+        $imag_obj->game_id=$id_new;
+        $imag_obj->save();
+      }
+
 
       $imag_obj2= new Image();
-      $imag_obj2->url=$request-> file('ss2')->store('public');
+      if($request->hasFile('ss2'))
+      {
+        $imag_obj2->url=$request-> file('ss2')->store('public');
+      }
       $imag_obj2->game_id=$id_new;
       $imag_obj2->save();
 
       $imag_obj3= new Image();
-      $imag_obj3->url=$request-> file('ss3')->store('public');
+      if($request->hasFile('ss3'))
+      {
+        $imag_obj3->url=$request-> file('ss3')->store('public');
+      }
       $imag_obj3->game_id=$id_new;
       $imag_obj3->save();
 
 
       $archive_obj= new Archive();
 
-      $archive_obj->url=$request-> file('fw')->store('public');
+      if($request->hasFile('fw'))
+      {
+        $archive_obj->url=$request-> file('fw')->store('public');
+      }
       $archive_obj->game_id=$id_new;
       $archive_obj->operative_system='Windows';
       $archive_obj->save();
 
+
+
+
       $archive_obj2= new Archive();
-      $archive_obj2->url=$request-> file('fl')->store('public');
+      if($request->hasFile('fl'))
+      {
+        $archive_obj2->url=$request-> file('fl')->store('public');
+      }
       $archive_obj2->game_id=$id_new;
       $archive_obj2->operative_system='Linux';
       $archive_obj2->save();
 
+
+
+
       $archive_obj3= new Archive();
-      $archive_obj3->url=$request-> file('fm')->store('public');
+      if($request->hasFile('fm'))
+      {
+        $archive_obj3->url=$request-> file('fm')->store('public');
+      }
+
       $archive_obj3->game_id=$id_new;
       $archive_obj3->operative_system='Mac';
       $archive_obj3->save();
@@ -109,7 +150,6 @@ class GameController extends Controller
 
     public function projects ($id)
     {
-      Session::flash('backUrl', Request::fullUrl());
       $user= User::find($id);
       return view('dashboard',compact('user'));
     }

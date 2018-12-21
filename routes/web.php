@@ -34,7 +34,8 @@ Route::get('/users','UserController@getUsers');
 Route::get('/user/{id}/proyectos/create','GameController@create');
 Route::post('/user/{id}/proyectos/create', 'GameController@storeGame');
 
-Route::post('/user/{id}/proyecto/{{game}}/edit', 'GameController@editGame');
+Route::get('/user/{id}/proyecto/{game}/edit', 'GameController@getInfo');
+Route::post('/user/{id}/proyecto/{game}/edit', 'GameController@editGame');
 
 Route::post('/user/{id}/delete','UserController@deleteUser');
 

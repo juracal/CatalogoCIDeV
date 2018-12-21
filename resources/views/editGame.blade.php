@@ -40,11 +40,11 @@
   <div class="split left">
     <div class="centered">
     <div>
-      <input class="form-control"  type="text" name="title" placeholder="Título" required></input>
+      <input class="form-control"  type="text" name="title" value="{{$game->title}}" required></input>
     </div>
 
     <div >
-      <textarea class="form-control" style="margin-top:20px;margin-bottom:20px;"  name="description" placeholder="Descripción" required></textarea>
+      <textarea class="form-control" style="margin-top:20px;margin-bottom:20px;"  name="description" required>{{$game->description}}</textarea>
     </div>
 
     <select data-live-search="true"  style="margin-top:50px;" class="selectpicker form-control"  name="tags[]" multiple>
@@ -53,7 +53,7 @@
       @endforeach
     </select>
     <div>
-      <input class="form-control" style="margin-top:20px;" type="text" name="video" placeholder="Video" required></input>
+      <input class="form-control" style="margin-top:20px;" type="text" name="video" value="{{$game->video}}" required></input>
     </div>
 
     <div>
