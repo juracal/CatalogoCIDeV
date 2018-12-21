@@ -47,7 +47,7 @@
       <textarea class="form-control" style="margin-top:20px;margin-bottom:20px;"  name="description" placeholder="Descripción" required></textarea>
     </div>
 
-    <select data-live-search="true" style="margin-top:50px;" class="selectpicker form-control"  name="tags[]" multiple>
+    <select data-live-search="true"  style="margin-top:50px;" class="selectpicker form-control"  name="tags[]" multiple>
       @foreach($tags as $tag)
       <option>{{$tag->name}}</option>
       @endforeach
@@ -59,15 +59,13 @@
     <div>
      <a class="fa fa-arrow-left btn btn-primary btn-back" href="{{ URL::previous()}}"> Go Back</a>
     </div>
+
+    <div>
+      <button class="btn_accept btn-success formal-form btn btn-lg" type="submit">Guardar</button>
+    </div>
   </div>
 
-
-
 </div>
-
-
-
-
 
 
  <div class="split right">
@@ -103,15 +101,12 @@
    </div>
 
 
-
    <div class=input_register2>
 
      <label class="btn btn-default fa fa-windows ">
      Adjuntar Archivo Windows <input type="file" >
     </label>
    </div>
-
-
 
 
    <div class=input_register2>
@@ -121,8 +116,6 @@
   </div>
 
 
-
-
    <div class=input_register2>
      <label class=" btn btn-default fa fa-apple ">
      Adjuntar Archivo Mac <input type="file" >
@@ -130,17 +123,12 @@
    </div>
 
 
-
-
-
  </div>
 
 </div>
 
 
-<div>
-  <button class="btn_accept btn-success formal-form btn btn-lg" type="submit">Guardar</button>
-</div>
-
 
 </form>
+</body>
+</html>
