@@ -98,7 +98,7 @@
        {data: 'title', name: 'title',className:"center"},
        {data: 'description', name: 'description',className:"center"},
        {data: 'action', name: 'action',className:"center",render: function ( data, type, row, meta ) {
-             return '<a class="fa fa-edit btn btn-warning" id="btn-table" href="/user/{{$user->id}}/edit/'+row['id']+'">Editar</a> <form style="display: inline" method="post" action="/user/'+row['id']+'/delete" id="delete_form">  {{ csrf_field() }}<input type="submit" class="fa fa-trash btn btn-danger" id="btn-red" onclick="return confirmation();"  value="Eliminar"></form>';
+             return '<a class="fa fa-edit btn btn-warning" id="btn-table" href="/user/{{$user->id}}/proyecto/'+row['id']+'/edit">Editar</a> <form style="display: inline" method="post" action="/user/'+row['id']+'/delete" id="delete_form">  {{ csrf_field() }}<input type="submit" class="fa fa-trash btn btn-danger" id="btn-red" onclick="return confirmation();"  value="Eliminar"></form>';
            }},
 
 

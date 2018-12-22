@@ -40,20 +40,20 @@
   <div class="split left">
     <div class="centered">
     <div>
-      <input class="form-control"  type="text" name="title" placeholder="Título" required></input>
+      <input class="form-control"  type="text" name="title" value="{{$game->title}}" required></input>
     </div>
 
     <div >
-      <textarea class="form-control" style="margin-top:20px;margin-bottom:20px;"  name="description" placeholder="Descripción" required></textarea>
+      <textarea class="form-control" style="margin-top:20px;margin-bottom:20px;"  name="description" required>{{$game->description}}</textarea>
     </div>
 
-    <select data-live-search="true"  style="margin-top:50px;" class="selectpicker form-control"  name="tags[]" multiple>
+    <select data-live-search="true"  style="margin-top:50px;" class="selectpicker form-control"  name="tags[]" multiple required>
       @foreach($tags as $tag)
       <option>{{$tag->name}}</option>
       @endforeach
     </select>
     <div>
-      <input class="form-control" style="margin-top:20px;" type="text" name="video" placeholder="Video" required></input>
+      <input class="form-control" style="margin-top:20px;" type="text" name="video" value="{{$game->video}}" required></input>
     </div>
 
     <div>
@@ -73,14 +73,14 @@
 
    <div class=input_register2>
      <label class="btn btn-default fa fa-image">
-     Adjuntar  Miniatura<input type="file" >
+     Adjuntar  Miniatura<input type="file" name = "miniature">
     </label>
    </div>
 
 
    <div class=input_register2>
      <label class="btn btn-default fa fa-image">
-     Adjuntar  Screenshot1 <input type="file" >
+     Adjuntar  Screenshot1 <input type="file" name = "ss1">
     </label>
    </div>
 
@@ -88,7 +88,7 @@
 
    <div class=input_register2>
      <label class="btn btn-default  fa fa-image">
-     Adjuntar  Screenshot 2 <input type="file" >
+     Adjuntar  Screenshot 2 <input type="file" name = "ss2">
     </label>
    </div>
 
@@ -96,7 +96,7 @@
    <div class=input_register2>
 
      <label class="btn btn-default fa fa-image">
-     Adjuntar Archivo Screenshot 3 <input type="file" >
+     Adjuntar Archivo Screenshot 3 <input type="file" name = "ss3">
     </label>
    </div>
 
@@ -104,21 +104,21 @@
    <div class=input_register2>
 
      <label class="btn btn-default fa fa-windows ">
-     Adjuntar Archivo Windows <input type="file" >
+     Adjuntar Archivo Windows <input type="file" name = "fw">
     </label>
    </div>
 
 
    <div class=input_register2>
      <label class="btn btn-default fa fa-linux  ">
-     Adjuntar Archivo Linux <input type="file" >
+     Adjuntar Archivo Linux <input type="file" name = "fl">
     </label>
   </div>
 
 
    <div class=input_register2>
      <label class=" btn btn-default fa fa-apple ">
-     Adjuntar Archivo Mac <input type="file" >
+     Adjuntar Archivo Mac <input type="file" name = "fm">
     </label>
    </div>
 

@@ -29,13 +29,14 @@ Route::post('/user/{id}/edit/{usuario}','UserController@update');
 Route::get('/user/{id}/usuarios','UserController@getUsersView');
 Route::get('/users','UserController@getUsers');
 
-
+Route::get('/game/{id}', 'GameController@getGamesView');
 
 
 Route::get('/user/{id}/proyectos/create','GameController@create');
 Route::post('/user/{id}/proyectos/create', 'GameController@storeGame');
 
-Route::post('/user/{id}/proyecto/{{game}}/edit', 'GameController@editGame');
+Route::get('/user/{id}/proyecto/{game}/edit', 'GameController@getInfo');
+Route::post('/user/{id}/proyecto/{game}/edit', 'GameController@editGame');
 
 Route::post('/user/{id}/delete','UserController@deleteUser');
 
