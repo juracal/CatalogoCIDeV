@@ -28,7 +28,7 @@ Route::post('/user/{id}/edit/{usuario}','UserController@update');
 Route::get('/user/{id}/usuarios','UserController@getUsersView');
 Route::get('/users','UserController@getUsers');
 
-
+Route::get('/game/{id}', 'GameController@getGamesView');
 
 
 Route::get('/user/{id}/proyectos/create','GameController@create');

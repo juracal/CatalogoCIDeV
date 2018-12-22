@@ -154,7 +154,13 @@ class GameController extends Controller
       return view('dashboard',compact('user'));
     }
 
+    public function getGamesView($id){
+      $game = Game::find($id);
+      $images = Image::where('game_id', $game->id)->get();
 
+
+      return view('game', compact('game', 'images'));
+    }
 
     public function getData($id){
 
@@ -171,7 +177,6 @@ class GameController extends Controller
                  return ;})
 
       ->make(true);
-
     }
 
     public function getProyectos($id)
