@@ -65,6 +65,11 @@ class GameController extends Controller
       $game->description = request('description');
       $game->video = request('video');
       $game->hidden= 'False';
+
+      if($request->hasFile('miniature')){
+          $game->miniature = $request->file('miniature')->store('public');
+      }
+
       $game->save();
       $id_new=$game->id;
 
@@ -73,7 +78,8 @@ class GameController extends Controller
         $game->tag()->attach($tag_id);
       }
 
-      //$game->miniature = $request->file('miniature')->store('public');
+
+
 
 
 
@@ -83,9 +89,9 @@ class GameController extends Controller
       if($request->hasFile('ss1'))
       {
         $imag_obj->url=$request-> file('ss1')->store('public');
-        $imag_obj->game_id=$id_new;
-        $imag_obj->save();
       }
+      $imag_obj->game_id=$id_new;
+      $imag_obj->save();
 
 
       $imag_obj2= new Image();

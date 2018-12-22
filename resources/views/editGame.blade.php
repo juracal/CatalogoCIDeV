@@ -73,14 +73,14 @@
 
    <div class=input_register2>
      <label class="btn btn-default fa fa-image">
-     Adjuntar  Miniatura<input type="file" >
+     Adjuntar  Miniatura<input type="file" name = "miniature">
     </label>
    </div>
 
 
    <div class=input_register2>
      <label class="btn btn-default fa fa-image">
-     Adjuntar  Screenshot1 <input type="file" >
+     Adjuntar  Screenshot1 <input type="file" name = "ss1">
     </label>
    </div>
 
@@ -88,7 +88,7 @@
 
    <div class=input_register2>
      <label class="btn btn-default  fa fa-image">
-     Adjuntar  Screenshot 2 <input type="file" >
+     Adjuntar  Screenshot 2 <input type="file" name = "ss2">
     </label>
    </div>
 
@@ -96,7 +96,7 @@
    <div class=input_register2>
 
      <label class="btn btn-default fa fa-image">
-     Adjuntar Archivo Screenshot 3 <input type="file" >
+     Adjuntar Archivo Screenshot 3 <input type="file" name = "ss3">
     </label>
    </div>
 
@@ -104,21 +104,21 @@
    <div class=input_register2>
 
      <label class="btn btn-default fa fa-windows ">
-     Adjuntar Archivo Windows <input type="file" >
+     Adjuntar Archivo Windows <input type="file" name = "fw">
     </label>
    </div>
 
 
    <div class=input_register2>
      <label class="btn btn-default fa fa-linux  ">
-     Adjuntar Archivo Linux <input type="file" >
+     Adjuntar Archivo Linux <input type="file" name = "fl">
     </label>
   </div>
 
 
    <div class=input_register2>
      <label class=" btn btn-default fa fa-apple ">
-     Adjuntar Archivo Mac <input type="file" >
+     Adjuntar Archivo Mac <input type="file" name = "fm">
     </label>
    </div>
 
