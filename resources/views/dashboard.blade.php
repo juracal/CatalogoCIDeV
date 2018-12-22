@@ -34,7 +34,7 @@
              <li id="profile" style="float:right;"><img class="img_prof" style="width:50px;height:50px;border-radius: 50%;" src="{{Storage::url($user->image)}}"></img>
                <label style="opacity: 0.50">{{$user->name}}</label>
                <ul>
-                 <li id="profile"><a href="/user/{{$user->id}}/edit">Mi Perfil</a></li>
+                 <li id="profile"><a href="/user/{{$user->id}}/edit/{{$user->id}}">Mi Perfil</a></li>
                  <li  id="profile"><a href="/logout">Cerrar Sesión</a></li>
                </ul>
              </li>

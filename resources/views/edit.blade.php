@@ -45,7 +45,7 @@
 
 
 
-      <form method="post"  action="/user/{{$id}}/edit/{{$user->id}}" enctype="multipart/form-data">
+      <form method="post"  action="/user/{{$id_user}}/edit/{{$user->id}}" enctype="multipart/form-data">
         {{csrf_field()}}
 
       <div class="split left">
