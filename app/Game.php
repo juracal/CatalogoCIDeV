@@ -22,9 +22,9 @@ class Game extends Model
     return $this->hasMany('App\Archive');
   }
 
-  public function tag()
+  public function tags()
   {
-    return $this->belongsToMany('App\Tag');
+    return $this->belongsToMany('App\Tag')->withPivot('tag_id');
   }
 
   public function comment()

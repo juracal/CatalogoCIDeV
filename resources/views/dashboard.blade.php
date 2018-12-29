@@ -24,12 +24,13 @@
     <body>
 
 
-      <div class="nav">
+
+      <div class="nav ">
            <ul>
              @if (Auth::id() and $user->role_id ==1)
-             <li class="home"><a href=>Juegos</a></li>
-             <li class="tutorials" id="usuarios"><a href="/user/{{$user->id}}/usuarios">Usuarios</a></li>
-            <li class="tutorials" ><a href="#">Notificaciones</a></li>
+             <li><a href="/user/{{$user->id}}/proyectos">Juegos</a></li>
+             <li><a id="usuarios" href="/user/{{$user->id}}/usuarios">Usuarios</a></li>
+            <li><a href="#">Notificaciones</a></li>
 
              <li id="profile" style="float:right;"><img class="img_prof" style="width:50px;height:50px;border-radius: 50%;" src="{{Storage::url($user->image)}}"></img>
                <label style="opacity: 0.50">{{$user->name}}</label>
@@ -43,16 +44,21 @@
              @if (Auth::id() and $user->role_id == 2)
              <li class="tutorials" id="usuarios"><a href="/user/{{$user->id}}/proyectos">Mis Juegos</a></li>
 
-             <li id="profile" style="float:right;"><img class="img_prof" style="width:50px;height:50px;border-radius: 50%;" src="{{Storage::url($user->image)}}"></img>
+             <li style="float:right;"><img class="img_prof" style="width:50px;height:50px;border-radius: 50%;" src="{{Storage::url($user->image)}}"></img>
                <label style="opacity: 0.50">{{$user->name}}</label>
                <ul>
-                 <li id="profile"><a href="/user/{{$user->id}}/edit">Mi Perfil</a></li>
+                 <li id="profile"><a href="/user/{{$user->id}}/edit/{{$user->id}}">Mi Perfil</a></li>
                  <li  id="profile"><a href="/logout">Cerrar Sesión</a></li>
                </ul>
              </li>
              @endif
            </ul>
          </div>
+         @if (session('status'))
+             <div class="alert alert-success" id=alert>
+                 {{ session('status') }}
+             </div>
+         @endif
 
 
 
@@ -75,6 +81,8 @@
                    <th style="display:none">Id</th>
                    <th>Name</th>
                    <th>Description</th>
+
+                   <th>Estado</th>
                    <th style="display:none;"><th>
                </tr>
            </thead>
@@ -97,8 +105,9 @@
 
        {data: 'title', name: 'title',className:"center"},
        {data: 'description', name: 'description',className:"center"},
+       {data: 'status', name: 'status',className:"center"},
        {data: 'action', name: 'action',className:"center",render: function ( data, type, row, meta ) {
-             return '<a class="fa fa-edit btn btn-warning" id="btn-table" href="/user/{{$user->id}}/proyecto/'+row['id']+'/edit">Editar</a> <form style="display: inline" method="post" action="/user/'+row['id']+'/delete" id="delete_form">  {{ csrf_field() }}<input type="submit" class="fa fa-trash btn btn-danger" id="btn-red" onclick="return confirmation();"  value="Eliminar"></form>';
+             return '<a class="fa fa-edit btn btn-warning" id="btn-table" href="/user/{{$user->id}}/proyecto/'+row['id']+'/edit">Editar</a> <form style="display: inline" method="post" action="/{{$user->id}}/proyecto/'+row['id']+'/delete" id="delete_form">  {{ csrf_field() }}<input type="submit" class="fa fa-trash btn btn-danger" id="btn-red" onclick="return confirmation();"  value="Eliminar"></form>';
            }},
 
 
@@ -112,25 +121,16 @@
 
 
 
-
-
-
-$(document).ready(function() {
-$("#usuarios").click(function() {
-    $.ajax({
-        type: 'GET',
-        url : "/user/{{$user->id}}/usuarios",
-        success : function (data) {
-            $("body").html(data);
-        }
-    });
-});
-});
-
-
-
 </script>
+<div id="pr">
+</div>
 
 </body>
 
 </html>
+
+<script>
+$(".alert").delay(4000).slideUp(200, function() {
+    $(this).alert('close');
+});
+</script>

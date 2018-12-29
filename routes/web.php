@@ -39,6 +39,7 @@ Route::get('/user/{id}/proyecto/{game}/edit', 'GameController@getInfo');
 Route::post('/user/{id}/proyecto/{game}/edit', 'GameController@editGame');
 
 Route::post('/user/{id}/delete','UserController@deleteUser');
+Route::post('{user}/proyecto/{id}/delete','GameController@deleteGame');
 
 
 Route::get('/logout','UserController@logout');

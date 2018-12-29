@@ -33,8 +33,18 @@
    &nbsp;
    &nbsp;
   </div>
+  <div>
+    @if (count($errors) > 0)
+   <div class = "alert alert-danger">
+      <ul>
+         @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+         @endforeach
+      </ul>
+   </div>
+@endif
 
-  <form method="post" action="/user/{{$user->id}}/proyectos/create" enctype="multipart/form-data">
+  <form method="post" action="/user/{{$user->id}}/proyecto/{{$game->id}}/edit" enctype="multipart/form-data">
     {{csrf_field()}}
 
   <div class="split left">

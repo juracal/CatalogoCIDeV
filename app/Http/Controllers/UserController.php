@@ -24,17 +24,20 @@ class UserController extends Controller
 
     public function authenticate()
     {
-
       $username=request('username');
       $password=request('password');
-      $user = User::where('email', '=', $username)->firstOrFail();
+
+      $user = User::where('email', '=', $username)->first();
+      if(is_null($user)){
+        return redirect ('login')->with('status', 'Usuario o contraseña incorrecta');
+      }
 
       if ($user->password==$password) {
         Auth::login($user);
 
         return redirect("/user/".(string)$user->id."/proyectos");
 
-      }else{
+      } else{
         return view('login');
       }
     }
@@ -58,7 +61,7 @@ class UserController extends Controller
   //Inserta el usuario
     public function storeUser (Request $request)
     {
-
+    
       $user = new User();
       $user->name= request('username');
       $user->last_name=request('last_name');
@@ -68,7 +71,7 @@ class UserController extends Controller
       $user->image= $request-> file('avatar')->store('public');
       $user->remember_token=request('_token');
 
-      $user->hidden= 'True';
+      $user->status= 'Visible';
 
 
 
@@ -77,11 +80,9 @@ class UserController extends Controller
         $role = Role::where('name', request('rls'))->first()->id;
         $user->role_id= $role;
 
-
-        if($role == 1){
-          $user->save();
-        }
+        $user->save();
         return redirect("/create");
+
       }
       else
       {
@@ -124,6 +125,11 @@ public function update (Request $request,$id,$usuario)
 {
   $user= User::find($usuario);
 
+  $user->name = request('username');
+  $user->last_name = request('last_name');
+  $user->description = request('description');
+  $user->email = request('email');
+
 
   if($request->hasFile('avatar'))
   {
@@ -135,9 +141,13 @@ public function update (Request $request,$id,$usuario)
   $role = Role::where('name', request('rls'))->first()->id;
 }
 
+  if($user->save()){
+      return redirect("/user/".$id."/proyectos")->with('status', 'Usuario editado exitosamente');
+  }
+  else{
+      return redirect("/user/".$id."/proyectos")->with('status', 'Usuario editado incorrectamente');
+  }
 
-  $user->update($request->only('name','last_name','description','email','avatar',$role));
-  return redirect("/user/".$id."/proyectos");
 
 }
 
@@ -155,7 +165,7 @@ else{
 }
 
 public function getUsers(){
-  $users = User::select(['id','name','last_name','email','role_id'])->where('hidden','True')->get();
+  $users = User::select(['id','name','last_name','email','status'])->get();
   return Datatables::of($users)
   -> addColumn('action', function () {
              return; })
@@ -167,7 +177,11 @@ public function getUsers(){
 public function deleteUser($id){
 
   $user = User::find($id);
-  $user->hidden = 'False';
+  if(  $user->status == 'Visible')
+    $user->status = 'No Visible';
+  else{
+    $user->status = 'Visible';
+  }
   $user->save();
   return redirect("/user/".(string)$id."/usuarios");
 }
