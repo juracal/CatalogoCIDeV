@@ -16,6 +16,15 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+
+    
+
+
+
+
+
+
+
     //Autenticar Usuario
     public function login ()
     {
