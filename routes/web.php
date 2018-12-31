@@ -25,6 +25,7 @@ Route::get('/user/proyectos/{id}','GameController@getData');
 Route::get('/user/{id}/edit/{usuario}','UserController@getInfo');
 Route::post('/user/{id}/edit/{usuario}','UserController@update');
 
+
 Route::get('/user/{id}/usuarios','UserController@getUsersView');
 Route::get('/users','UserController@getUsers');
 
@@ -38,6 +39,7 @@ Route::get('/user/{id}/proyecto/{game}/edit', 'GameController@getInfo');
 Route::post('/user/{id}/proyecto/{game}/edit', 'GameController@editGame');
 
 Route::post('/user/{id}/delete','UserController@deleteUser');
+Route::post('{user}/proyecto/{id}/delete','GameController@deleteGame');
 
 
 Route::get('/logout','UserController@logout');

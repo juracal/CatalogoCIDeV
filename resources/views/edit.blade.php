@@ -41,12 +41,14 @@
        &nbsp;
        &nbsp;
        &nbsp;
+
+
+
+
+      <form method="post"  action="/user/{{$id_user}}/edit/{{$user->id}}" enctype="multipart/form-data">
+        {{csrf_field()}}
       </div>
 
-
-
-      <form method="post"  action="/user/{{$id}}/edit/{{$user->id}}" enctype="multipart/form-data">
-        {{csrf_field()}}
 
       <div class="split left">
 
@@ -98,6 +100,7 @@
 
  </div>
 </div>
+
 
     </form>
 

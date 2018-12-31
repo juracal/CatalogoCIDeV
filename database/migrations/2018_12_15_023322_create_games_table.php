@@ -21,7 +21,7 @@ class CreateGamesTable extends Migration
             $table->text('description');
             $table->mediumText('miniature');
             $table->mediumText('video');
-            $table->string('hidden');
+            $table->string('status');
             $table->timestamps();
         });
     }

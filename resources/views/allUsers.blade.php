@@ -27,13 +27,13 @@
       <div class="nav">
            <ul>
              <li class="home"><a href="/user/{{$user->id}}/proyectos">Juegos</a></li>
-             <li class="tutorials" id="usuarios"><a href="#">Usuarios</a></li>
+             <li class="tutorials" id="usuarios"><a href="/user/{{$user->id}}/usuarios">Usuarios</a></li>
             <li class="tutorials" ><a href="#">Notificaciones</a></li>
             @if (Auth::id())
              <li id="profile" style="float:right;"><img class="img_prof" style="width:50px;height:50px;border-radius: 50%;" src="{{Storage::url($user->image)}}"></img>
                <label style="opacity: 0.50">{{$user->name}}</label>
                <ul>
-                 <li id="profile"><a href="/user/{{$user->id}}/edit">Mi Perfil</a></li>
+                 <li id="profile"><a href="/user/{{$user->id}}/edit/{{$user->id}}">Mi Perfil</a></li>
                  <li  id="profile"><a href="/logout">Cerrar Sesión</a></li>
                </ul>
              </li>
@@ -56,7 +56,7 @@
                    <th>Name</th>
                    <th>Apellido</th>
                    <th>Correo</th>
-                   <th>Rol</th>
+                   <th>Estado</th>
                    <th style="display:none;"><th>
 
                </tr>
@@ -85,9 +85,9 @@ $(function() {
 {data: 'name', name: 'name',className:"center"},
 {data: 'last_name', name: 'last_name',className:"center"},
 {data: 'email', name: 'email',className:"center"},
-{data: 'role_id', name: 'role',className:"center"},
+{data: 'status', name: 'status',className:"center"},
 {data: 'action', name: 'action',className:"center",render: function ( data, type, row, meta ) {
-      return '<a class="fa fa-edit btn btn-warning" id="btn-table" href="/user/{{$user->id}}/edit/'+row['id']+'">Editar</a> <form style="display: inline" method="post" action="/user/'+row['id']+'/delete" id="delete_form">  {{ csrf_field() }}<input type="submit" class="fa fa-trash btn btn-danger" id="btn-red" onclick="return confirmation();"  value="Eliminar"></form>';
+      return '<a class="fa fa-edit btn btn-warning" id="btn-table" href="/user/{{$user->id}}/edit/'+row['id']+'">Editar</a> <form style="display: inline" method="post" action="/user/'+row['id']+'/delete" id="delete_form">  {{ csrf_field() }}<input type="submit" class="fa fa-trash btn btn-danger" id="btn-red" onclick="return confirmation();"  value="Cambiar Estado"></form>';
 
     } },
 
