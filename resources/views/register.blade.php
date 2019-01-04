@@ -22,7 +22,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Editar</title>
+        <title>Registrar</title>
 
 
         <link href="{{asset('/css/style.css') }}" rel="stylesheet" type="text/css ">
@@ -31,17 +31,13 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     </head>
-    <body>
-      <div class="h1">
-        <h1>Registrar Usuario</h1>
+    <body class="body_login ">
+
+      <div style="height:90px;" class="bg-info  border-info banner" >
+        <h1 style="color:white; text-align:left;">Registrar</h1>
       </div>
 
-      <div class="block">
-       &nbsp;
-       &nbsp;
-       &nbsp;
-       &nbsp;
-      </div>
+
 
 
 
@@ -53,13 +49,11 @@
 
         <div class="img-rounded" style="background-color:white;">
           <img class="img-profile" width=300px height="300px" src='https://blog.ramboll.com/fehmarnbelt/wp-content/themes/ramboll2/images/profile-img.jpg'></img>
-          <input class="inputfile" type="file" name="avatar" placeholder="Ingrese foto de perfil"></input>
-          <div>
-           <a class="fa fa-arrow-left btn btn-primary btn-back" href="{{ URL::previous()}}"> Go Back</a>
+          <div class="custom-file" style="margin-top:20px;">
+            <input type="file" class="custom-file-input" id="customFileLang" lang="es">
+            <label class="custom-file-label" for="customFileLang">Seleccionar Archivo</label>
           </div>
         </div>
-
-
 
       </div>
 
@@ -68,9 +62,12 @@
 
        <div>
          <input class=" form-control input_register" type="text" name="username" placeholder="Nombre" required></input>
+          <font style="font-size:small;"color="red">Campo Requerido *</font>
        </div>
+
        <div>
          <input class=" form-control input_register" type="text" name="last_name" placeholder="Apellido" required></input>
+           <font style="font-size:small;"color="red">Campo Requerido *</font>
        </div>
        <div>
 
@@ -78,9 +75,11 @@
        </div>
        <div>
          <input class="form-control input_register" type="text" name="email" placeholder="Correo Electrónico" required></input>
+           <font style="font-size:small;"color="red">Campo Requerido *</font>
        </div>
        <div>
          <input class="form-control input_register" type="password" name="password" placeholder="Contraseña" required></input>
+           <font style="font-size:small;"color="red">Campo Requerido *</font>
        </div>
        @if (Auth::id())
        <select class="form-control input_register" name="rls">

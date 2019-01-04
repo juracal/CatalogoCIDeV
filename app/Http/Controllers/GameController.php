@@ -17,11 +17,11 @@ class GameController extends Controller
 /*
 Función para cargar la vista de crear un juego
 */
-    public function create ($id)
+    public function create ()
     {
       if(Auth::user()){
       $tags=Tag::all();
-      $user=User::find($id);
+      $user= Auth::user();
       return view('registerGame',compact('user','tags'));
     }
     else{
@@ -84,16 +84,16 @@ Función para cargar la vista de editar un juego
 Función para guardar los juegos en la BD
 */
 
-    public function storeGame(Request $request, $id)
+    public function storeGame(Request $request)
     {
       $this->rules($request);
 
       $tags = request('tags');
-      $user = User::find($id);
+      $user= Auth::user();
       $game = new Game();
 
       $game->title = request('title');
-      $game->user_id = $id;
+      $game->user_id = $user->id;
       $game->description = request('description');
       $game->video = request('video');
       $game->status= 'Visible';
@@ -119,31 +119,42 @@ Función para guardar los juegos en la BD
 /*
 Función para cargar la vista "dashboard"
 */
-    public function projects ($id)
+    public function projects ()
     {
-      $user= User::find($id);
+      $user= Auth::user();
       return view('dashboard',compact('user'));
     }
+
+
+
+    /*
+    Función para cargar la vista "dashboard"
+    */
+    public function getAllGames()
+    {
+      $games= Game::where('status', 'Visible')->paginate(12);
+      return view('store',compact('games'));
+    }
+
+
 
 
 
     public function getGamesView($id){
       $game = Game::find($id);
       $images = Image::where('game_id', $game->id)->get();
-
-
       return view('game', compact('game', 'images'));
     }
 
+
 /*
-Función para obtener los juegos de un usuario
+Función para obtener los juegos de un usuario en formato datatable
 */
+    public function getData(){
 
-    public function getData($id){
-
-      $user=User::find($id);
+      $user=Auth::user();
       if($user->role_id == 2){
-      $roles = Game::select(['id','title','description','status'])->where('status','Visible')->where('user_id',$id)->get();
+      $roles = Game::select(['id','title','description','status'])->where('status','Visible')->where('user_id',$user->id)->get();
       }
       else
       {
@@ -154,17 +165,6 @@ Función para obtener los juegos de un usuario
                  return ;})
 
       ->make(true);
-    }
-
-
-/*
-Función que retorna la vista para registrar un juego
-*/
-    public function getProyectos($id)
-    {
-      $tags=Tag::all();
-      $user=User::find($id);
-      return view('registerGame',compact('tags','user'));
     }
 
 
@@ -270,11 +270,13 @@ Función para validar los campos del formulario.
       $rules = [
          'ss1'=>'mimes:jpeg,jpg,png',
          'ss2'=>'mimes:jpeg,jpg,png',
-         'ss3'=>'mimes:jpeg,jpg,png'
+         'ss3'=>'mimes:jpeg,jpg,png',
+         'miniature'=>'dimensions:width=200,height=200'
      ];
 
      $customMessages = [
-         'mimes' => 'El screenshot :attribute debe ser una imagen [jpeg,jpg,png]'
+         'mimes' => 'El screenshot :attribute debe ser una imagen [jpeg,jpg,png]',
+         'dimensions'=>'Las dimensiones deben ser 200x200'
      ];
 
      $this->validate($request, $rules, $customMessages);
