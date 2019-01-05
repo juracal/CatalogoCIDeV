@@ -157,6 +157,18 @@ Función para obtener los juegos de un usuario
     }
 
 
+
+
+    public function comment(Request $request, $user_id, $game_id){
+
+      $user = User::find($user_id);
+      $game = Game::find($game_id);
+
+
+
+    }
+
+
 /*
 Función que retorna la vista para registrar un juego
 */

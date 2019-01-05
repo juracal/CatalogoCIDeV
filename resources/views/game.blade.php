@@ -87,7 +87,21 @@
 <p>{{$game->description}}</p>
 
 
+<form class="comment_form " method="post" action="/comment">
 
+  <div class = "h2">
+    Comentarios
+  </div>
+
+  <div>
+    <textarea rows="4" cols="50" placeholder = "Comenta aquí..."> </textarea>
+  </div>
+
+  <div>
+    <button type="button">Comentar</button>
+  </div>
+
+</form>
 
 </body>
 
