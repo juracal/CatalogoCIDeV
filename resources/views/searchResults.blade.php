@@ -57,16 +57,30 @@
 </div>
 
   </form>
+</div>
 
 
-
-  <div class="main_container">
+<div>
       @foreach($games as $game)
-     <div class="bg-info game_figure"><figure><img class="img_store" src="{{Storage::url($game->miniature)}}"</img></figure>{{$game->title}} </div>
+     <div class="result_div" style="height:100px;"><figure><img class="img_src"  src="{{Storage::url($game->miniature)}}"</img></figure>
+       <label style="margin-top:50px;">{{$game->description}}</label>
+     </div>
+
+
+
+     <div  class="div_label">
+       <label style="float:left; margin-left:20px;" >Título: {{$game->title}}</label>
+       <br></br>
+       <label style="float:left; margin-left:20px;" >Autor: {{$game->user->name}}</label>
+     </div>
       @endforeach
 </div>
+
+
 <div class="pagination">
 {{ $games->links()}}
 </div>
+
 </body>
+
 </html>

@@ -29,6 +29,33 @@ Función para cargar la vista de crear un juego
     }
     }
 
+
+/*
+Función para buscar juegos según el índice
+
+*/
+
+  public function search(){
+
+    $arg=request('choice');
+    $value=request('search');
+
+    if ($arg == 'title') {
+
+      $games= Game::where('title', 'LIKE', '%'.$value.'%')->where('status', 'Visible')->paginate(20);
+
+    }
+    if ($arg == 'tag'){
+      $games = Game::whereHas('tags', function ($q) {
+        $value=request('search');
+        $q->where('name', 'like', $value)->where('status', 'Visible');
+      })->paginate(20);
+
+    }
+
+    return view('searchResults',compact('games'));
+  }
+
 /*
 Función para editar guardar los cambios de un juego en la BD
 */
@@ -135,6 +162,8 @@ Función para cargar la vista "dashboard"
       $games= Game::where('status', 'Visible')->paginate(12);
       return view('store',compact('games'));
     }
+
+
 
 
 

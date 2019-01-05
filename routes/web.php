@@ -26,6 +26,9 @@ Route::get('/index','GameController@getAllGames');
 Route::get('/user/{id}/proyectos','GameController@projects');
 Route::get('/user/proyectos','GameController@getData');
 
+//----------------------------------------------------------
+Route::post('/game/search','GameController@search');
+
 Route::get('/user/{id}/edit/{usuario}','UserController@getInfo');
 Route::post('/user/{id}/edit/{usuario}','UserController@update');
 

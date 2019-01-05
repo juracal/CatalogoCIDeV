@@ -58,6 +58,7 @@
       <div class="centered">
       <div>
         <input class="form-control"  type="text" name="title" value='{{old('title','Título')}}' required></input>
+          <font style="font-size:1.0em;"color="red">Campo Requerido*</font>
       </div>
 
       <div >
@@ -72,6 +73,7 @@
       </select>
       <div>
         <input class="form-control" style="margin-top:20px;" type="text" name="video" value='{{old('video','Video')}}' required></input>
+
       </div>
 
       <div>
@@ -94,6 +96,7 @@
      <div class="custom-file inputfile" style="margin-top:20px;">
        <input type="file" name="miniature" class="custom-file-input" id="customFileLang" lang="es">
        <label class="custom-file-label" for="customFileLang">Thumbnail</label>
+        <font style="font-size:1.0em;"color="red">Campo Requerido. La imagen debe ser 200x200*</font>
      </div>
 
 

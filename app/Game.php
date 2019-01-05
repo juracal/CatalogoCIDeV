@@ -11,6 +11,10 @@ class Game extends Model
 
   protected $fillable=['title','user_id','description','video','hidden'];
 
+  public function user()
+  {
+    return $this->belongsTo('App\User');
+  }
 
   public function images()
   {
@@ -24,7 +28,7 @@ class Game extends Model
 
   public function tags()
   {
-    return $this->belongsToMany('App\Tag')->withPivot('tag_id');
+    return $this->belongsToMany('App\Tag');
   }
 
   public function comment()
