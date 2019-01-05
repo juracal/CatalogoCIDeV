@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
 
-    
+
 
 
 
@@ -47,7 +47,7 @@ class UserController extends Controller
         return redirect("/user/".(string)$user->id."/proyectos");
 
       } else{
-        return view('login');
+        return redirect ('login')->with('status', 'Usuario o contraseña incorrecta');
       }
     }
 
@@ -70,7 +70,7 @@ class UserController extends Controller
   //Inserta el usuario
     public function storeUser (Request $request)
     {
-    
+
       $user = new User();
       $user->name= request('username');
       $user->last_name=request('last_name');

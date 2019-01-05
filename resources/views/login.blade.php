@@ -7,20 +7,18 @@
    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
   <link href="{{asset('/css/style.css') }}" rel="stylesheet" type="text/css ">
-
+</header>
 
 <body class="body_login ">
 
   <div class="bg-info  border-info banner" >
     <h1 style="color:white; text-align:left;">CIDeV</h1>
-
   </div>
-
 
 
 <form class="login_form " method="post" action="/login">
      {{ csrf_field() }}
-     
+
      @if (session('status'))
          <div class="alert alert-danger" id=alert>
              {{ session('status') }}

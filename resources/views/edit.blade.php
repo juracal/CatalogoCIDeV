@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>Editar Perfil</title>
 
     <!-- Fonts -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -31,16 +31,12 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     </head>
-    <body>
-      <div class="h1">
-        <h1>Registrar Usuario</h1>
+    <body class="body_login ">
+
+      <div style="height:90px;" class="bg-info  border-info banner" >
+        <h1 style="color:white; text-align:left;">Editar Usuario</h1>
       </div>
 
-      <div class="block">
-       &nbsp;
-       &nbsp;
-       &nbsp;
-       &nbsp;
 
 
 
@@ -57,7 +53,7 @@
           <img class="img-profile" width=300px height="300px" src="{{Storage::url($user->image)}}"></img>
           <input class="inputfile" type="file" name="avatar" placeholder="Ingrese foto de perfil"></input>
           <div>
-           <a class="fa fa-arrow-left btn btn-primary btn-back" href="{{ URL::previous()}}"> Go Back</a>
+           <a  class="fa fa-arrow-left btn btn-primary btn-back" href="{{ URL::previous()}}"> Go Back</a>
           </div>
         </div>
 

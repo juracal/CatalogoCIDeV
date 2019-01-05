@@ -18,9 +18,16 @@ Route::post('/login','UserController@authenticate');
 Route::get('/create','UserController@createUser');
 Route::post('/create','UserController@storeUser');
 
+Route::get('/index','GameController@getAllGames');
+
+
+
 
 Route::get('/user/{id}/proyectos','GameController@projects');
-Route::get('/user/proyectos/{id}','GameController@getData');
+Route::get('/user/proyectos','GameController@getData');
+
+//----------------------------------------------------------
+Route::post('/game/search','GameController@search');
 
 Route::get('/user/{id}/edit/{usuario}','UserController@getInfo');
 Route::post('/user/{id}/edit/{usuario}','UserController@update');
@@ -32,8 +39,8 @@ Route::get('/users','UserController@getUsers');
 Route::get('/game/{id}', 'GameController@getGamesView');
 
 
-Route::get('/user/{id}/proyectos/create','GameController@create');
-Route::post('/user/{id}/proyectos/create', 'GameController@storeGame');
+Route::get('/user/proyectos/create','GameController@create');
+Route::post('/user/proyectos/create', 'GameController@storeGame');
 
 Route::get('/user/{id}/proyecto/{game}/edit', 'GameController@getInfo');
 Route::post('/user/{id}/proyecto/{game}/edit', 'GameController@editGame');
