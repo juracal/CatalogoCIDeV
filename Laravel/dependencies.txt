@@ -1,0 +1,15 @@
+Link simbólico a imágenes:
+
+ php artisan storage:link
+
+ Instalar passport:
+
+composer require laravel/passport
+
+php artisan migrate
+
+php artisan passport:install
+
+Instalar los dataTables:
+
+composer require yajra/laravel-datatables-oracle:^8.0
