@@ -21,8 +21,12 @@
 
 <body>
 
-  <div class="h1">
-    <h1>{{$game->title}}</h1>
+  <div class="bg-info  border-info banner" >
+    <h1 style="color:white; text-align:left;">CIDeV</h1>
+  </div>
+
+  <div id="title_game">
+     <h2 style="text-align:center;" class="text-primary">{{$game->title}}</h2>
   </div>
 
   <div class="block">
@@ -32,46 +36,40 @@
    &nbsp;
   </div>
 
-  <img src = "{{Storage::url($game->miniature)}}" > </img>
 
-  <div id="demo" class="carousel slide" data-ride="carousel">
+  <img style="color: white; align-content: center; width:400px;height:400px;" src = "{{Storage::url($game->miniature)}}" > </img>
 
-  <ul class="carousel-indicators">
-    <li data-target="#demo" data-slide-to="0" class="active"></li>
-    <li data-target="#demo" data-slide-to="1"></li>
-    <li data-target="#demo" data-slide-to="2"></li>
-  </ul>
+  <div style="height: 400px; width: 600px" >
 
-<!--
-  <div class="carousel-inner">
-    @foreach ($images as $image)
-      <div class="carousel-item">
-        <img src="{{Storage::url($image->url)}}" alt="Screenshot">
+    <div style = "center" id="demo" class="carousel slide" data-ride="carousel">
+
+    <ul class="carousel-indicators">
+      <li data-target="#demo" data-slide-to="0" classssssssss="active"></li>
+      <li data-target="#demo" data-slide-to="1"></li>
+      <li data-target="#demo" data-slide-to="2"></li>
+    </ul>
+
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img style="height: 400px; width: 600px" src="{{Storage::url($images[0]->url)}}" alt="Screenshot 1">
       </div>
-    @endforeach
+      <div class="carousel-item">
+        <img style="height: 400px; width: 600px" src="{{Storage::url($images[1]->url)}}" alt="Screenshot 2">
+      </div>
+      <div class="carousel-item">
+        <img style="height: 400px; width: 600px" src="{{Storage::url($images[2]->url)}}" alt="Screenshot 3">
+      </div>
+    </div>
+
+
+    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#demo" data-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </a>
+
   </div>
--->
-
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="{{Storage::url($images[0]->url)}}" alt="Screenshot 1">
-    </div>
-    <div class="carousel-item">
-      <img src="{{Storage::url($images[1]->url)}}" alt="Screenshot 2">
-    </div>
-    <div class="carousel-item">
-      <img src="{{Storage::url($images[2]->url)}}" alt="Screenshot 3">
-    </div>
-  </div>
-
-
-  <a class="carousel-control-prev" href="#demo" data-slide="prev">
-    <span class="carousel-control-prev-icon"></span>
-  </a>
-  <a class="carousel-control-next" href="#demo" data-slide="next">
-    <span class="carousel-control-next-icon"></span>
-  </a>
-
 </div>
 
 <!-- Video -->
