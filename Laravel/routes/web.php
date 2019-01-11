@@ -52,6 +52,10 @@ Route::get('/comments/{id}','GameController@commentsView');
 Route::post('/comments/{id}','GameController@postComment');
 
 
+Route::get('/notification','UserController@notificationview');
+Route::post('/notification','UserController@sendNotification');
+
+
 Route::get('/logout','UserController@logout');
 
 

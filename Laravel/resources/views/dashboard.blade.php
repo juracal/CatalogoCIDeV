@@ -33,7 +33,7 @@
              @if (Auth::id() and $user->role_id ==1)
              <li ><a href="/user/{{$user->id}}/proyectos">Juegos</a></li>
              <li><a  id="usuarios" href="/user/{{$user->id}}/usuarios">Usuarios</a></li>
-            <li><a href="#">Notificaciones</a></li>
+            <li><a href="/notification">Notificaciones</a></li>
 
              <li id="profile" style="float:right;"><img class="img_prof" style="width:50px;height:50px;border-radius: 50%;" src="{{Storage::url($user->image)}}"></img>
                <label style="opacity: 0.50">{{$user->name}}</label>
