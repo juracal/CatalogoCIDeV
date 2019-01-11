@@ -27,7 +27,7 @@
 
   <div id="title_game" style="text-align:center;margin-top:100px;float:right;margin-right:100px;" >
      <h2 class="text-primary">{{$game->title}}</h2>
-    <textarea>{{$game->description}}</textarea>
+    <textarea cols="50" rows="500" style="border:none;">{{$game->description}}</textarea>
 
   </div>
 

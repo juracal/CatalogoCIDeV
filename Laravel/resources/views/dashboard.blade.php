@@ -98,6 +98,9 @@
                processing: true,
                serverSide: true,
                lengthChange: false,
+               autoWidth: true,
+               responsive:true,
+
                bInfo: false,
                ajax: 'http://127.0.0.1:8000/user/proyectos',
                headers: {
@@ -107,7 +110,7 @@
                columns: [
 
        {data: 'title', name: 'title',className:"center"},
-       {data: 'description', name: 'description',className:"center"},
+       {data: 'user_id', name: 'user_id',className:"center"},
        {data: 'status', name: 'status',className:"center"},
        {data: 'action', name: 'action',className:"center",render: function ( data, type, row, meta ) {
        return '<a class="fa fa-edit btn btn-warning" id="btn-table" href="/user/{{$user->id}}/proyecto/'+row['id']+'/edit">Editar</a> <form style="display: inline" method="post" action="/{{$user->id}}/proyecto/'+row['id']+'/delete" id="delete_form">  {{ csrf_field() }}<a class="fa fa-exchange btn btn-danger" id="btn-red" onclick="return confirmation();"  value="Cambiar Estado">Cambiar Estado</a></form>';

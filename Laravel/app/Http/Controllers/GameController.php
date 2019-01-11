@@ -183,11 +183,11 @@ Función para obtener los juegos de un usuario en formato datatable
 
       $user=Auth::user();
       if($user->role_id == 2){
-      $roles = Game::select(['id','title','description','status'])->where('status','Visible')->where('user_id',$user->id)->get();
+      $roles = Game::select(['id','title','user_id','status'])->where('status','Visible')->where('user_id',$user->id)->get();
       }
       else
       {
-        $roles = Game::select(['id','title','description','status'])->get();
+        $roles = Game::select(['id','title','user_id','status'])->get();
       }
       return Datatables::of($roles)
       -> addColumn('action', function () {
