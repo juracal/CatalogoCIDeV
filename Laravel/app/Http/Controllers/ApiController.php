@@ -28,14 +28,17 @@ class ApiController extends Controller
 
 
      public function login(Request $request){
-       //dd($request->all());
-       if((['email' => request('email'), 'password' => request('password')])){
+
+       if(['email' => request('email'), 'password' => request('password')]){
+
+         //dd($request->all());
 
          $username=request('email');
          $password=request('password');
          $user = User::where('email' , $username)->where( 'password' , $password)->first();
          $success['token'] =  $user->createToken('MyApp')->accessToken;
          return response()->json(['success' => $success], $this->successStatus);
+
        }
        else{
          return response()->json(['error'=>'Unauthorised'], 401);
@@ -43,9 +46,40 @@ class ApiController extends Controller
 
     }
 
+    public function search(Request $request){
+      if (['filter' => request('filter'), 'argument' => request('argument')]){
+
+
+        $filter = request('filter');
+        $arg = request('argument');
+
+        if ($filter == 'title') {
+
+          $games = Game::where('title', 'LIKE', '%'.$arg.'%')->where('status', 'Visible')->get()->toArray(); //->paginate(20);
+          return response()->json($games);
+
+        }
+
+        if ($filter == 'tag'){
+          $games = Game::whereHas('tags', function ($q) {
+            $arg = request('argument');
+            $q->where('name', 'like', $arg)->where('status', 'Visible');
+            })->get()->toArray();
+
+          return response()->json($games);
+
+
+        }
+      }
+      else{
+        return response()->json(['error'=>'Not valid arguments'], 401);
+      }
+    }
+
     public function catalogue(){
 
-      $games = Game::all()->where('hidden', '=', 'False')->toArray();
+
+      $games = Game::all()->where('status', 'Visible')->toArray();
 
       return response()->json($games);
       /*
