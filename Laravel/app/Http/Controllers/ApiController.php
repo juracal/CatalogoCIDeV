@@ -35,9 +35,18 @@ class ApiController extends Controller
 
          $username=request('email');
          $password=request('password');
-         $user = User::where('email' , $username)->where( 'password' , $password)->first();
-         $success['token'] =  $user->createToken('MyApp')->accessToken;
-         return response()->json(['success' => $success], $this->successStatus);
+
+         $user = User::where('email', '=', $username)->first();
+         if(is_null($user)){
+           return response()->json(['error'=>'Unauthorised'], 401);
+         }
+
+         if ($user->password==$password) {
+           Auth::login($user);
+           $success['token'] =  $user->createToken('CatalogoCIDeV')->accessToken;
+           return response()->json(['success' => $success], $this->successStatus);
+         }
+
 
        }
        else{
