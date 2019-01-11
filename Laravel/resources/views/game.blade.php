@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Videojuego</title>
+  <title>{{$game->title}}</title>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -25,9 +25,24 @@
     <h1 style="color:white; text-align:left;">CIDeV</h1>
   </div>
 
-  <div id="title_game" style="text-align:center;margin-top:100px;float:right;margin-right:100px;" >
+
+  <div>
+    <a class="btn" href="{{ url('/game/' . $game->id) }}" type="button">Información</a>
+    <a class="btn" href="{{ url('/comments/' . $game->id) }}" type="button">Comentarios</a>
+  </div>
+
+  <div id="title_game" style="text-align:center;margin-top:100px;float:right;margin-right:100px;display:inline-block;" >
      <h2 class="text-primary">{{$game->title}}</h2>
-    <textarea cols="50" rows="500" style="border:none;">{{$game->description}}</textarea>
+    <div class="text_desc" style="width:500px;height:100px;display:inline-block">{{$game->description}}</div>
+    <div  style="border:solid;background-color:#618685;">
+    <h4 style="color:white">Descargar</h4>
+    @foreach ($game->archive as $archive)
+    <form method="post" action="/game/download/{{$archive->id}}/{{$archive->operative_system}}"style="display:inline-block">
+  {{csrf_field()}}
+    <button style="background-color:transparent;color:white;" class="btn">{{$archive->operative_system}}</button>
+    </form>
+    @endforeach
+</div>
 
   </div>
 
@@ -36,7 +51,7 @@
 
 
 
-  <div style="height: 600px; width: 600px;float:left" >
+  <div style="height: 600px; width: 600px;float:left;margin-top:150px;">
 
     <div style = "width:100%;" id="demo" class="carousel slide" data-ride="carousel">
 
@@ -73,29 +88,10 @@
 <div style="margin-top:100px;">
 <iframe src="{{$game->video}}" height="300px" width="100%" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
-<div class = "h2">
-  Descripcion
-</div>
 
 
 
 
-
-<form class="comment_form " method="post" action="/comment">
-
-  <div class = "h2">
-    Comentarios
-  </div>
-
-  <div>
-    <textarea rows="4" cols="50" placeholder = "Comenta aquí..."> </textarea>
-  </div>
-
-  <div>
-    <button type="button">Comentar</button>
-  </div>
-
-</form>
 
 </body>
 

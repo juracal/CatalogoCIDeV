@@ -389,9 +389,54 @@ label{
 .div_label{
 
   height: 50px;
-  
+
   -webkit-box-shadow: 7px 22px 5px 5px rgba(158,166,255,1);
 -moz-box-shadow: 7px 22px 5px 5px rgba(158,166,255,1);
 box-shadow: 7px 22px 5px 5px rgba(158,166,255,1);
+
+}
+
+textarea:disabled{background-color:white;
+resize:none;
+color: black;
+font-family: serif;
+font-size: 1.0;}
+
+
+.text_desc{
+  font-family: serif;
+  font-size: 0.6em;
+  text-align:justify;
+  white-space: pre-line;
+  white-space: pre-wrap;
+}
+
+
+.comment_form
+{
+  height: 200px;
+  margin-top: 100px;
+  width: 100%;
+  text-align:center;
+}
+.comment_area
+{
+  width: 100%;
+
+}
+
+.comment_section{
+  margin-top: 80px;
+
+}
+
+.comment_desc
+{
+  margin-top: 10px;
+  font-style: italic;
+  font-family: serif;
+  white-space: pre-line;
+  white-space: pre-wrap;
+  display: inline-block;
 
 }

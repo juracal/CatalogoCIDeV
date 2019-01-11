@@ -21,7 +21,7 @@ Route::post('/create','UserController@storeUser');
 Route::get('/index','GameController@getAllGames');
 
 
-
+Route::post('/game/download/{proyecto}/{os}','GameController@download');
 
 Route::get('/user/{id}/proyectos','GameController@projects');
 Route::get('/user/proyectos','GameController@getData');
@@ -47,6 +47,9 @@ Route::post('/user/{id}/proyecto/{game}/edit', 'GameController@editGame');
 
 Route::post('/user/{id}/delete','UserController@deleteUser');
 Route::post('{user}/proyecto/{id}/delete','GameController@deleteGame');
+
+Route::get('/comments/{id}','GameController@commentsView');
+Route::post('/comments/{id}','GameController@postComment');
 
 
 Route::get('/logout','UserController@logout');

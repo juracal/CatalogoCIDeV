@@ -9,6 +9,7 @@ use App\User;
 use App\Role;
 use App\Image;
 use App\Archive;
+use App\Comment;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\Auth;
 
@@ -86,6 +87,7 @@ Función para editar guardar los cambios de un juego en la BD
         $tag_id = Tag::where('name', $tag)->first()->id;
         $game->tags()->attach($tag_id);
       }
+
 
       $this->saveImages($request, $game_id);
       $this->saveArchives($request,$game_id);
@@ -193,6 +195,8 @@ Función para obtener los juegos de un usuario en formato datatable
       -> addColumn('action', function () {
                  return ;})
 
+
+
       ->make(true);
     }
 
@@ -226,6 +230,33 @@ Función para la eliminación de los juegos
     }
 
 
+
+    /*
+    Función para cargar la vista de comentarios
+    */
+
+    public function commentsView ($id)
+    {
+      $game=Game::find($id);
+      $comments= Comment::where('game_id',$id)->orderBy('created_at', 'desc')->paginate(12);
+      return view('comment',compact('comments','id'));
+    }
+
+    /*
+    Función para cargar la vista de comentarios
+    */
+
+    public function postComment ($id)
+    {
+      $comment= new Comment();
+      $comment->game_id= $id;
+      $comment->description = request('description');
+      $comment->hidden='Visible';
+      $comment->save();
+    return redirect("/comments/".(string)$id);
+    }
+
+
 /*
 Función para guardar las imágenes en la base de datos
 */
@@ -236,6 +267,7 @@ Función para guardar las imágenes en la base de datos
 
       if($request->hasFile('ss1'))
       {
+        Image::where('game_id', $id_new)->delete();
         $imag_obj->url=$request-> file('ss1')->store('public');
       }
       $imag_obj->game_id=$id_new;
@@ -267,40 +299,51 @@ Función para guardar los archivos en la base de datos
 
     public function saveArchives(Request $request,$id_new){
 
-      $archive_obj= new Archive();
+
 
       if($request->hasFile('fw'))
       {
+        $archive_obj = Archive::where('game_id',$id_new)->where('operative_system','Windows')->first();
         $archive_obj->url=$request-> file('fw')->store('public');
+        $archive_obj->game_id=$id_new;
+        $archive_obj->operative_system='Windows';
+        $archive_obj->save();
       }
-      $archive_obj->game_id=$id_new;
-      $archive_obj->operative_system='Windows';
-      $archive_obj->save();
 
 
 
 
-      $archive_obj2= new Archive();
+
       if($request->hasFile('fl'))
       {
+        $archive_obj2 = Archive::where('game_id',$id_new)->where('operative_system','Linux')->first();
         $archive_obj2->url=$request-> file('fl')->store('public');
+        $archive_obj2->game_id=$id_new;
+        $archive_obj2->operative_system='Linux';
+        $archive_obj2->save();
       }
-      $archive_obj2->game_id=$id_new;
-      $archive_obj2->operative_system='Linux';
-      $archive_obj2->save();
 
 
 
 
-      $archive_obj3= new Archive();
+
+
       if($request->hasFile('fm'))
       {
+        $archive_obj3 = Archive::where('game_id',$id_new)->where('operative_system','Mac')->first();
         $archive_obj3->url=$request-> file('fm')->store('public');
+        $archive_obj3->game_id=$id_new;
+        $archive_obj3->operative_system='Mac';
+        $archive_obj3->save();
       }
 
-      $archive_obj3->game_id=$id_new;
-      $archive_obj3->operative_system='Mac';
-      $archive_obj3->save();
+
+
+    }
+
+    public function download ($id,$os){
+      $archive=Archive::where('id',$id)->where('operative_system',$os)->first();
+      return response()->download(storage_path("app/{$archive->url}"));
 
     }
 
@@ -309,9 +352,9 @@ Función para validar los campos del formulario.
 */
     public function rules(Request $request){
       $rules = [
-         'ss1'=>'mimes:jpeg,jpg,png',
-         'ss2'=>'mimes:jpeg,jpg,png',
-         'ss3'=>'mimes:jpeg,jpg,png',
+         'ss1'=>'mimes:jpeg,jpg,png|dimensions:width=600,height=600',
+         'ss2'=>'mimes:jpeg,jpg,png|dimensions:width=600,height=600',
+         'ss3'=>'mimes:jpeg,jpg,png|dimensions:width=600,height=600',
          'fw'=>'mimes:zip',
          'fl'=>'mimes:zip,tar',
          'fm'=>'mimes:zip',
@@ -322,6 +365,9 @@ Función para validar los campos del formulario.
          'ss1.mimes' => 'El screenshot 1 debe ser una imagen [jpeg,jpg,png]',
          'ss2.mimes' => 'El screenshot 2 debe ser una imagen [jpeg,jpg,png]',
          'ss3.mimes' => 'El screenshot 3 : debe ser una imagen [jpeg,jpg,png]',
+         'ss1.dimensions'=> 'Las dimensiones del Screenshot 1 debe ser de 600x600',
+         'ss2.dimensions'=> 'Las dimensiones del Screenshot 2 debe ser de 600x600',
+         'ss3.dimensions'=> 'Las dimensiones del Screenshot 3 debe ser de 600x600',
          'miniature.dimensions'=>'Las dimensiones deben ser 200x200',
          'fw.mimes' => 'Archivo WIndows: Solo se aceptan archivos comprimidos [.zip]',
          'fl.mimes' => 'Archivo: Linux: Solo se aceptan archivos comprimidos [.zip,.tar]',
