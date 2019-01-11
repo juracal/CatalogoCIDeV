@@ -25,23 +25,20 @@
     <h1 style="color:white; text-align:left;">CIDeV</h1>
   </div>
 
-  <div id="title_game">
-     <h2 style="text-align:center;" class="text-primary">{{$game->title}}</h2>
-  </div>
+  <div id="title_game" style="text-align:center;margin-top:100px;float:right;margin-right:100px;" >
+     <h2 class="text-primary">{{$game->title}}</h2>
+    <textarea>{{$game->description}}</textarea>
 
-  <div class="block">
-   &nbsp;
-   &nbsp;
-   &nbsp;
-   &nbsp;
   </div>
 
 
-  <img style="color: white; align-content: center; width:400px;height:400px;" src = "{{Storage::url($game->miniature)}}" > </img>
 
-  <div style="height: 400px; width: 600px" >
 
-    <div style = "center" id="demo" class="carousel slide" data-ride="carousel">
+
+
+  <div style="height: 600px; width: 600px;float:left" >
+
+    <div style = "width:100%;" id="demo" class="carousel slide" data-ride="carousel">
 
     <ul class="carousel-indicators">
       <li data-target="#demo" data-slide-to="0" classssssssss="active"></li>
@@ -51,13 +48,13 @@
 
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img style="height: 400px; width: 600px" src="{{Storage::url($images[0]->url)}}" alt="Screenshot 1">
+        <img style="height: 600px; width: 600px" src="{{Storage::url($images[0]->url)}}" alt="Screenshot 1">
       </div>
       <div class="carousel-item">
-        <img style="height: 400px; width: 600px" src="{{Storage::url($images[1]->url)}}" alt="Screenshot 2">
+        <img style="height: 600px; width: 600px" src="{{Storage::url($images[1]->url)}}" alt="Screenshot 2">
       </div>
       <div class="carousel-item">
-        <img style="height: 400px; width: 600px" src="{{Storage::url($images[2]->url)}}" alt="Screenshot 3">
+        <img style="height: 600px; width: 600px" src="{{Storage::url($images[2]->url)}}" alt="Screenshot 3">
       </div>
     </div>
 
@@ -73,16 +70,15 @@
 </div>
 
 <!-- Video -->
-
-<iframe width="560" height="315" src="{{$game->video}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-
+<div style="margin-top:100px;">
+<iframe src="{{$game->video}}" height="300px" width="100%" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
 <div class = "h2">
   Descripcion
 </div>
 
 
-<p>{{$game->description}}</p>
+
 
 
 <form class="comment_form " method="post" action="/comment">

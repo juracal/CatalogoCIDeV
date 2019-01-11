@@ -312,12 +312,20 @@ Función para validar los campos del formulario.
          'ss1'=>'mimes:jpeg,jpg,png',
          'ss2'=>'mimes:jpeg,jpg,png',
          'ss3'=>'mimes:jpeg,jpg,png',
+         'fw'=>'mimes:zip',
+         'fl'=>'mimes:zip,tar',
+         'fm'=>'mimes:zip',
          'miniature'=>'dimensions:width=200,height=200'
      ];
 
      $customMessages = [
-         'mimes' => 'El screenshot :attribute debe ser una imagen [jpeg,jpg,png]',
-         'dimensions'=>'Las dimensiones deben ser 200x200'
+         'ss1.mimes' => 'El screenshot 1 debe ser una imagen [jpeg,jpg,png]',
+         'ss2.mimes' => 'El screenshot 2 debe ser una imagen [jpeg,jpg,png]',
+         'ss3.mimes' => 'El screenshot 3 : debe ser una imagen [jpeg,jpg,png]',
+         'miniature.dimensions'=>'Las dimensiones deben ser 200x200',
+         'fw.mimes' => 'Archivo WIndows: Solo se aceptan archivos comprimidos [.zip]',
+         'fl.mimes' => 'Archivo: Linux: Solo se aceptan archivos comprimidos [.zip,.tar]',
+         'fm.mimes' => 'Archivo Mac: Solo se aceptan archivos comprimidos [.zip]'
      ];
 
      $this->validate($request, $rules, $customMessages);

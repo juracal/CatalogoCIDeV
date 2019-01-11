@@ -62,7 +62,7 @@
 
   <div class="main_container">
       @foreach($games as $game)
-     <div class="bg-info game_figure"><figure><img class="img_store" src="{{Storage::url($game->miniature)}}"</img></figure>{{$game->title}} </div>
+     <div class="bg-info game_figure"><figure><a href="/game/{{$game->id}}"><img class="img_store" src="{{Storage::url($game->miniature)}}"</img></a></figure>{{$game->title}} </div>
       @endforeach
 </div>
 <div class="pagination">

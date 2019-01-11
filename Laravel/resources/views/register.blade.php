@@ -50,7 +50,7 @@
         <div class="img-rounded" style="background-color:white;">
           <img class="img-profile" width=300px height="300px" src='https://blog.ramboll.com/fehmarnbelt/wp-content/themes/ramboll2/images/profile-img.jpg'></img>
           <div class="custom-file" style="margin-top:20px;">
-            <input type="file" class="custom-file-input" id="customFileLang" lang="es">
+            <input name="avatar" type="file" class="custom-file-input" id="customFileLang" lang="es">
             <label class="custom-file-label" for="customFileLang">Seleccionar Archivo</label>
           </div>
         </div>
