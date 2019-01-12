@@ -16,7 +16,7 @@
   </div>
 
 
-<form class="login_form " method="post" action="/login">
+<form class="login_form " method="post" action="/notification">
      {{ csrf_field() }}
 
      @if (session('status'))

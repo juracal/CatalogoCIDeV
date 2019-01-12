@@ -13,7 +13,7 @@ use App\Archive;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\Auth;
 
-
+use OneSignal;
 class UserController extends Controller
 {
 
@@ -193,6 +193,22 @@ public function deleteUser($id){
   }
   $user->save();
   return redirect("/user/".(string)$id."/usuarios");
+}
+
+
+public function notificationview()
+{
+  return view('notification');
+}
+
+public function sendNotification()
+{
+  $message=request('description');
+  OneSignal::sendNotificationToAll(
+       $message
+
+   );
+   return redirect('notification');
 }
 
 
