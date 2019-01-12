@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Game;
+use App\Image;
+use App\Tag;
 Use File;
 use Illuminate\Support\Facades\Auth;
 use Validator;
@@ -53,6 +55,23 @@ class ApiController extends Controller
          return response()->json(['error'=>'Unauthorised'], 401);
        }
 
+    }
+
+    public function gameImages(Request $request){
+      if(['game_id' => request('game_id')]){
+        $game_id = request('game_id');
+        $images = Image::where('game_id', $game_id)->get()->toArray();
+        return response()->json($images);
+      }
+    }
+
+    public function gameTags(Request $request){
+      if(['game_id' => request('game_id')]){
+        $game_id = request('game_id');
+        $game = Game::where('game_id', $game_id)->first();
+        $tags = $game->tags()->toArray();
+        return response()->json($tags);
+      }
     }
 
     public function search(Request $request){

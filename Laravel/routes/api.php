@@ -15,6 +15,8 @@ use Illuminate\Http\Request;
 
 Route::post('login', 'ApiController@login');
 Route::post('search', 'ApiController@search');
+Route::post('gameImages', 'ApiController@gameImages');
+Route::post('gameTags', 'ApiController@gameTags');
 
 Route::get('catalogue', 'ApiController@catalogue');
 
