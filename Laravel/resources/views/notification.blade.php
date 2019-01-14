@@ -11,10 +11,35 @@
 
 <body class="body_login ">
 
-  <div class="bg-info  border-info banner" >
-    <h1 style="color:white; text-align:left;">CIDeV</h1>
-  </div>
+  <div class="nav">
+       <ul >
+         @if (Auth::id() and $user->role_id ==1)
+         <li ><a href="/user/{{$user->id}}/proyectos">Juegos</a></li>
+         <li><a  id="usuarios" href="/user/{{$user->id}}/usuarios">Usuarios</a></li>
+        <li><a href="/notification">Notificaciones</a></li>
 
+         <li id="profile" style="float:right;"><img class="img_prof" style="width:50px;height:50px;border-radius: 50%;" src="{{Storage::url($user->image)}}"></img>
+           <label style="opacity: 0.50">{{$user->name}}</label>
+           <ul>
+             <li id="profile"><a href="/user/{{$user->id}}/edit/{{$user->id}}">Mi Perfil</a></li>
+             <li  id="profile"><a href="/logout">Cerrar Sesión</a></li>
+           </ul>
+         </li>
+         @endif
+
+         @if (Auth::id() and $user->role_id == 2)
+         <li id="usuarios"><a href="/user/{{$user->id}}/proyectos">Mis Juegos</a></li>
+
+         <li style="float:right;"><img class="img_prof" style="width:50px;height:50px;border-radius: 50%;" src="{{Storage::url($user->image)}}"></img>
+           <label>{{$user->name}}</label>
+           <ul>
+             <li id="profile"><a href="/user/{{$user->id}}/edit/{{$user->id}}">Mi Perfil</a></li>
+             <li  id="profile"><a href="/logout">Cerrar Sesión</a></li>
+           </ul>
+         </li>
+         @endif
+       </ul>
+     </div>
 
 <form class="login_form " method="post" action="/notification">
      {{ csrf_field() }}
@@ -34,11 +59,11 @@
   </div>
 
   <div>
-    <textarea class="login_input form-control" type="password" name="description" placeholder="Description" required></textarea>
+    <textarea class="login_input form-control" type="password" name="description" placeholder="Mensaje" required></textarea>
   </div>
 
   <div>
-    <button class="form-control btn btn-info" type="submit" > Enivar </button>
+    <button class="form-control btn btn-info" type="submit" > Enviar </button>
   </div>
 
 </form>

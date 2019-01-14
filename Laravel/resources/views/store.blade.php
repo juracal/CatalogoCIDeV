@@ -68,5 +68,10 @@
 <div class="pagination">
 {{ $games->links()}}
 </div>
+
+
+
+
+
 </body>
 </html>

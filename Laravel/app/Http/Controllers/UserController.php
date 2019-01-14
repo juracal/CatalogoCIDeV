@@ -37,8 +37,8 @@ class UserController extends Controller
       $password=request('password');
 
       $user = User::where('email', '=', $username)->first();
-      if(is_null($user)){
-        return redirect ('login')->with('status', 'Usuario o contraseña incorrecta');
+      if(is_null($user) or $user->status=="No Visible"){
+        return redirect ('login')->with('status', 'Este usuario no existe');
       }
 
       if ($user->password==$password) {
@@ -198,17 +198,19 @@ public function deleteUser($id){
 
 public function notificationview()
 {
-  return view('notification');
+  $user= Auth::user();
+  return view('notification',compact('user'));
 }
 
 public function sendNotification()
 {
+  $user=Auth::user();
   $message=request('description');
   OneSignal::sendNotificationToAll(
        $message
 
    );
-   return redirect('notification');
+  return redirect("/user/".(string)$user->id."/proyectos");
 }
 
 

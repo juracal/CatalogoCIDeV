@@ -131,7 +131,22 @@ Función para guardar los juegos en la BD
           $game->miniature = $request->file('miniature')->store('public');
       }
 
-      $game->save();
+      try
+      {
+        $game->save();
+
+      }
+      catch (\Illuminate\Database\QueryException $e)
+      {
+
+      return  redirect ('/user/proyectos/create')->with('status', 'El título ya está tomado. Por favor ingrese otro.');
+
+    }
+
+
+
+
+
       $id_new=$game->id;
 
       foreach ($tags as $tag) {
@@ -304,6 +319,9 @@ Función para guardar los archivos en la base de datos
       if($request->hasFile('fw'))
       {
         $archive_obj = Archive::where('game_id',$id_new)->where('operative_system','Windows')->first();
+        if (is_null($archive_obj)) {
+          $archive_obj= new Archive();
+        }
         $archive_obj->url=$request-> file('fw')->store('public');
         $archive_obj->game_id=$id_new;
         $archive_obj->operative_system='Windows';
@@ -317,6 +335,9 @@ Función para guardar los archivos en la base de datos
       if($request->hasFile('fl'))
       {
         $archive_obj2 = Archive::where('game_id',$id_new)->where('operative_system','Linux')->first();
+        if (is_null($archive_obj2)) {
+          $archive_obj2= new Archive();
+        }
         $archive_obj2->url=$request-> file('fl')->store('public');
         $archive_obj2->game_id=$id_new;
         $archive_obj2->operative_system='Linux';
@@ -331,6 +352,9 @@ Función para guardar los archivos en la base de datos
       if($request->hasFile('fm'))
       {
         $archive_obj3 = Archive::where('game_id',$id_new)->where('operative_system','Mac')->first();
+        if (is_null($archive_obj3)) {
+          $archive_obj3= new Archive();
+        }
         $archive_obj3->url=$request-> file('fm')->store('public');
         $archive_obj3->game_id=$id_new;
         $archive_obj3->operative_system='Mac';

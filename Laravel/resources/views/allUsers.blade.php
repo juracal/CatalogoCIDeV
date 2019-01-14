@@ -27,8 +27,8 @@
       <div class="nav">
            <ul>
              <li class="home"><a href="/user/{{$user->id}}/proyectos">Juegos</a></li>
-             <li class="tutorials" id="usuarios"><a href="/user/{{$user->id}}/usuarios">Usuarios</a></li>
-            <li class="tutorials" ><a href="#">Notificaciones</a></li>
+             <li  id="usuarios"><a href="/user/{{$user->id}}/usuarios">Usuarios</a></li>
+            <li  ><a href="/notification">Notificaciones</a></li>
             @if (Auth::id())
              <li id="profile" style="float:right;"><img class="img_prof" style="width:50px;height:50px;border-radius: 50%;" src="{{Storage::url($user->image)}}"></img>
                <label style="opacity: 0.50">{{$user->name}}</label>
@@ -75,7 +75,7 @@ $(function() {
         serverSide: true,
         lengthChange: false,
         bInfo: false,
-        ajax: 'http://127.0.0.1:8000/users',
+        ajax: 'http://761ca6ce.ngrok.io/users',
         headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
 
 

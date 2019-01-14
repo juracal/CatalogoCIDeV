@@ -50,6 +50,12 @@
    </div>
 @endif
 
+@if (session('status'))
+    <div class="alert alert-warning" id=alert>
+        {{ session('status') }}
+    </div>
+@endif
+
 
   <form method="post" action="/user/proyectos/create" enctype="multipart/form-data">
     {{csrf_field()}}
@@ -62,7 +68,7 @@
       </div>
 
       <div >
-        <textarea class="form-control" style="margin-top:20px;margin-bottom:20px;"  name="description" required>{{old('description','Descripción')}}</textarea>
+        <textarea class="form-control" style="margin-top:20px;margin-bottom:20px;height:80px;"  name="description" required>{{old('description','Descripción')}}</textarea>
       </div>
 
       <select data-live-search="true"   style="margin-top:50px;" class="selectpicker form-control"  name="tags[]" multiple required>
@@ -73,7 +79,7 @@
       </select>
       <div>
         <input class="form-control" style="margin-top:20px;" type="text" name="video" value='{{old('video','Video')}}' required></input>
-
+        <font style="font-size:1.0em;"color="red">Campo Requerido*</font>
       </div>
 
       <div>
@@ -104,6 +110,7 @@
    <div class="custom-file inputfile" style="margin-top:20px;">
      <input type="file" name="ss1" class="custom-file-input" id="customFileLang" lang="es">
      <label class="custom-file-label" for="customFileLang">ScreenShot1</label>
+     <font style="font-size:1.0em;"color="red">La imagen debe ser 600x600*</font>
    </div>
 
 
@@ -112,12 +119,14 @@
  <div class="custom-file inputfile" style="margin-top:20px;">
    <input type="file" name="ss2" class="custom-file-input" id="customFileLang" lang="es">
    <label class="custom-file-label" for="customFileLang">Screenshot 2</label>
+   <font style="font-size:1.0em;"color="red">La imagen debe ser 600x600*</font>
  </div>
 
 
 <div class="custom-file inputfile" style="margin-top:20px;">
   <input type="file" name="ss3" class="custom-file-input" id="customFileLang" lang="es">
   <label class="custom-file-label" for="customFileLang">Screenshot 3</label>
+  <font style="font-size:1.0em;"color="red">La imagen debe ser 600x600*</font>
 </div>
 
 
@@ -125,6 +134,7 @@
 <div class="custom-file inputfile" style="margin-top:20px;">
   <input type="file" name="fw" class="custom-file-input" id="customFileLang" lang="es">
   <label class="custom-file-label" for="customFileLang">Archivo Windows</label>
+  <font style="font-size:1.0em;"color="red">Ingresar archivos .zip*</font>
 </div>
 
 
@@ -132,12 +142,14 @@
 <div class="custom-file inputfile" style="margin-top:20px;">
   <input type="file" name="fl" class="custom-file-input" id="customFileLang" lang="es">
   <label class="custom-file-label" for="customFileLang">Archivo Linux</label>
+  <font style="font-size:1.0em;"color="red">Ingresar archivos .zip o .tar*</font>
 </div>
 
 
 <div class="custom-file inputfile" style="margin-top:20px;">
   <input type="file" name="fm" class="custom-file-input" id="customFileLang" lang="es">
   <label class="custom-file-label" for="customFileLang">Archivo Mac</label>
+  <font style="font-size:1.0em;"color="red">Ingresar archivos .zip*</font>
 </div>
 
 

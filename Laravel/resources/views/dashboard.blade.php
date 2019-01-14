@@ -100,7 +100,7 @@
                responsive:true,
 
                bInfo: false,
-               ajax: 'http://127.0.0.1:8000/user/proyectos',
+               ajax: 'http://761ca6ce.ngrok.io/user/proyectos',
                headers: {
        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
  },
